@@ -1,0 +1,2916 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="LilD Photos｜街上见——个人摄影作品集，收录在路上遇见的风景、人物与日常。"
+    />
+    <meta property="og:title" content="LilD Photos｜街上见" />
+    <meta property="og:description" content="个人摄影作品集，收录在路上遇见的风景、人物与日常。" />
+    <meta property="og:type" content="website" />
+    <meta name="color-scheme" content="dark" />
+    <title>LilD Photos｜街上见</title>
+    <style>
+      :root {
+        --paper: #151310;
+        --paper-light: #211d18;
+        --ink: #eee5d7;
+        --rust: #c65a3b;
+        --line: rgba(226, 213, 193, 0.25);
+        --muted: #aaa092;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.045), transparent 32%),
+          radial-gradient(circle at 72% 46%, rgba(185, 135, 84, 0.1) 0.7px, transparent 0.8px),
+          var(--paper);
+        background-size: auto, 5px 5px, auto;
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong,
+          SimSun, serif;
+      }
+
+      body.is-modal-open {
+        overflow: hidden;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      button,
+      a {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        color: inherit;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      button:focus-visible,
+      a:focus-visible {
+        outline: 2px solid var(--rust);
+        outline-offset: 5px;
+      }
+
+      ::selection {
+        background: var(--rust);
+        color: var(--ink);
+      }
+
+      .site-header {
+        min-height: 112px;
+        display: grid;
+        grid-template-columns: 1fr 1.55fr 210px;
+        align-items: stretch;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+        z-index: 20;
+      }
+
+      .wordmark,
+      .site-header nav,
+      .issue {
+        display: flex;
+        align-items: center;
+        padding: 0 clamp(24px, 3.4vw, 54px);
+      }
+
+      .wordmark {
+        font-size: clamp(2.2rem, 3.4vw, 4rem);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        border-right: 1px solid var(--line);
+      }
+
+      .site-header nav {
+        justify-content: flex-end;
+        gap: clamp(14px, 2.3vw, 36px);
+        font-size: 0.98rem;
+        letter-spacing: 0.12em;
+      }
+
+      .site-header nav a {
+        position: relative;
+      }
+
+      .site-header nav a::after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        background: var(--rust);
+        left: 0;
+        right: 100%;
+        bottom: -8px;
+        transition: right 220ms ease;
+      }
+
+      .site-header nav a:hover::after,
+      .site-header nav a:focus-visible::after {
+        right: 0;
+      }
+
+      .issue {
+        margin: 0;
+        border-left: 1px solid var(--line);
+        justify-content: center;
+        gap: 18px;
+        color: var(--rust);
+        font-size: clamp(2.6rem, 4vw, 4.4rem);
+        line-height: 1;
+      }
+
+      .issue span {
+        color: var(--ink);
+        font-size: 0.85rem;
+        letter-spacing: 0.13em;
+      }
+
+      .eyebrow,
+      .section-kicker,
+      .series-number,
+      .series-meta,
+      .series-count,
+      .work-caption small,
+      .hero-image figcaption,
+      .lightbox-copy small,
+      .notes-index,
+      .next-series,
+      .back-link,
+      footer {
+        font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .eyebrow,
+      .section-kicker {
+        margin: 0 0 28px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+
+      .hero {
+        height: min(760px, calc(100svh - 112px));
+        min-height: 600px;
+        display: grid;
+        grid-template-columns: minmax(390px, 38vw) 1fr;
+        position: relative;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero:focus-visible {
+        outline: 2px solid var(--rust);
+        outline-offset: -2px;
+      }
+
+      .hero-copy {
+        padding: clamp(52px, 7vh, 90px) clamp(28px, 4.5vw, 72px) 72px;
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: visible;
+      }
+
+      .hero h1 {
+        margin: 0;
+        font-size: clamp(4.2rem, 6.1vw, 7.2rem);
+        font-weight: 700;
+        line-height: 0.98;
+        letter-spacing: 0.015em;
+        position: relative;
+        z-index: 2;
+      }
+
+      .location {
+        margin: 26px 0 0;
+        color: var(--rust);
+        font-size: clamp(1rem, 1.5vw, 1.45rem);
+        letter-spacing: 0.12em;
+      }
+
+      .hairline {
+        width: min(100%, 360px);
+        height: 1px;
+        background: var(--line);
+        margin: 28px 0 24px;
+      }
+
+      .dek {
+        margin: 0;
+        max-width: 480px;
+        font-size: clamp(1.05rem, 1.35vw, 1.4rem);
+        letter-spacing: 0.08em;
+        line-height: 1.85;
+      }
+
+      #hero-series-count {
+        margin-top: 24px;
+      }
+
+      .primary-link,
+      .series-enter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        letter-spacing: 0.08em;
+      }
+
+      .primary-link {
+        min-width: 225px;
+        margin-top: 48px;
+        padding: 20px 26px;
+        background: var(--rust);
+        color: var(--ink);
+        transition: background 220ms ease, transform 220ms ease;
+      }
+
+      .primary-link:hover,
+      .primary-link:focus-visible {
+        background: #9c3f27;
+        transform: translateY(-2px);
+      }
+
+      .hero-image {
+        width: min(calc(100% - clamp(40px, 6vw, 96px)), 900px);
+        height: auto;
+        margin: auto;
+        align-self: center;
+        justify-self: center;
+        overflow: visible;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        background: transparent;
+      }
+
+      .hero.is-portrait .hero-image {
+        width: min(470px, 42vw, 41.333svh);
+      }
+
+      .hero.is-square .hero-image {
+        width: min(calc(100% - clamp(40px, 6vw, 96px)), 620px);
+      }
+
+      .hero-image-link {
+        display: block;
+        width: 100%;
+        height: min(64svh, 590px);
+        overflow: hidden;
+      }
+
+      .hero.is-portrait .hero-image-link {
+        height: auto;
+        aspect-ratio: 2 / 3;
+      }
+
+      .hero.is-square .hero-image-link {
+        height: auto;
+        aspect-ratio: 1;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 48% 52%;
+        transition: opacity 420ms ease, transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .hero-image.is-changing img {
+        opacity: 0.18;
+      }
+
+      .hero-image:hover img,
+      .hero-image:focus-within img {
+        transform: scale(1.012);
+      }
+
+      .hero-image figcaption {
+        margin: 0;
+        padding: 0;
+        color: var(--muted);
+        background: transparent;
+        font-size: 0.58rem;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .hero-media-controls {
+        width: 100%;
+        min-height: 31px;
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .carousel-dots {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0;
+        background: transparent;
+      }
+
+      .carousel-dot {
+        width: 9px;
+        height: 9px;
+        border: 1px solid rgba(242, 235, 221, 0.72);
+        border-radius: 50%;
+        padding: 0;
+        background: transparent;
+        cursor: pointer;
+        transition: background 180ms ease, transform 180ms ease;
+      }
+
+      .carousel-dot[aria-current="true"] {
+        background: var(--rust);
+        border-color: var(--rust);
+        transform: scale(1.18);
+      }
+
+      .carousel-dot:focus-visible {
+        outline: 2px solid var(--paper);
+        outline-offset: 3px;
+      }
+
+      .folio {
+        position: absolute;
+        left: 0;
+        bottom: 26px;
+        margin: 0;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.75rem;
+      }
+
+      .folio span {
+        color: var(--rust);
+      }
+
+      .series-index-section,
+      .notes-section,
+      .about-section,
+      .series-detail {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .series-index-section {
+        padding: clamp(88px, 10vw, 150px) clamp(24px, 5vw, 76px);
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: 1fr minmax(280px, 520px);
+        gap: 48px;
+        align-items: end;
+        margin-bottom: clamp(58px, 8vw, 110px);
+      }
+
+      .section-heading h2,
+      .notes-copy h2,
+      .about-section h2,
+      .series-title,
+      .lightbox-copy h2 {
+        margin: 0;
+        font-size: clamp(3rem, 5.2vw, 6.4rem);
+        line-height: 1.05;
+        letter-spacing: 0.04em;
+      }
+
+      .section-intro {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 2;
+        letter-spacing: 0.05em;
+      }
+
+      .series-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(44px, 5vw, 78px) clamp(34px, 4vw, 64px);
+        align-items: start;
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+
+      .series-card {
+        display: block;
+        width: 100%;
+        max-width: 590px;
+        min-width: 0;
+        border-top: 1px solid var(--line);
+        padding-top: 16px;
+      }
+
+      .series-card:nth-child(even) {
+        justify-self: end;
+        margin-top: clamp(34px, 4vw, 58px);
+      }
+
+      .series-card-cover {
+        position: relative;
+        overflow: hidden;
+        background: transparent;
+      }
+
+      .series-card-cover.no-cover {
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        background:
+          linear-gradient(135deg, transparent 49.8%, var(--line) 50%, transparent 50.2%),
+          #26231f;
+      }
+
+      .series-cover-placeholder {
+        display: grid;
+        gap: 10px;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .series-cover-placeholder strong {
+        font-size: clamp(1.8rem, 3vw, 3rem);
+        letter-spacing: 0.08em;
+      }
+
+      .series-cover-placeholder span {
+        color: var(--muted);
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .series-card.is-landscape .series-card-cover,
+      .series-card.is-square .series-card-cover {
+        aspect-ratio: 16 / 10;
+      }
+
+      .series-card.is-portrait .series-card-cover {
+        width: min(100%, 420px);
+        margin-inline: auto;
+      }
+
+      .series-card-cover img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 260ms ease;
+      }
+
+      .series-card.is-portrait .series-card-cover img {
+        height: auto;
+        object-fit: initial;
+      }
+
+      .series-card:hover .series-card-cover img,
+      .series-card:focus-visible .series-card-cover img {
+        transform: scale(1.018);
+        filter: contrast(1.05);
+      }
+
+      .series-card-index {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 12px 15px;
+        color: var(--ink);
+        background: rgba(18, 16, 13, 0.82);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.75rem;
+      }
+
+      .series-card-copy {
+        padding-top: 24px;
+      }
+
+      .series-card-heading {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      .series-card h3 {
+        margin: 0;
+        font-size: clamp(2rem, 3.2vw, 3.7rem);
+        line-height: 1.1;
+        letter-spacing: 0.055em;
+      }
+
+      .series-card-english {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .series-count {
+        flex: 0 0 auto;
+        margin: 7px 0 0;
+        color: var(--rust);
+        font-size: 0.64rem;
+      }
+
+      .series-card-description {
+        margin: 24px 0 0;
+        max-width: 620px;
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.95;
+        letter-spacing: 0.045em;
+      }
+
+      .series-enter {
+        margin-top: 30px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--rust);
+        font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+      }
+
+      .notes-section {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+      }
+
+      .notes-index {
+        min-height: 660px;
+        border-right: 1px solid var(--line);
+        padding: 48px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: var(--rust);
+      }
+
+      .notes-index span:last-child {
+        writing-mode: vertical-rl;
+        color: var(--ink);
+      }
+
+      .notes-copy {
+        padding: clamp(90px, 10vw, 150px) clamp(28px, 8vw, 120px);
+      }
+
+      .notes-copy h2 {
+        max-width: 900px;
+      }
+
+      .notes-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(34px, 6vw, 90px);
+        max-width: 980px;
+        margin-top: 70px;
+        padding-top: 30px;
+        border-top: 1px solid var(--line);
+      }
+
+      .notes-columns p {
+        margin: 0;
+        font-size: 1.02rem;
+        line-height: 2.15;
+        letter-spacing: 0.055em;
+      }
+
+      .about-section {
+        padding: clamp(82px, 9vw, 135px) clamp(24px, 5vw, 76px);
+        display: grid;
+        grid-template-columns: 1.25fr 0.9fr;
+        gap: 60px 90px;
+      }
+
+      .about-section h2 {
+        max-width: 760px;
+        font-size: clamp(2.8rem, 4.7vw, 5.8rem);
+      }
+
+      .about-section > p {
+        margin: 42px 0 0;
+        font-size: 1rem;
+        line-height: 2.1;
+        letter-spacing: 0.06em;
+        max-width: 520px;
+      }
+
+      .next-series {
+        grid-column: 1 / -1;
+        margin-top: 40px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 28px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .next-series span {
+        color: var(--rust);
+        font-size: 0.65rem;
+      }
+
+      .next-series strong {
+        font-size: clamp(1.2rem, 2vw, 2rem);
+        letter-spacing: 0.08em;
+        text-transform: none;
+      }
+
+      .series-detail {
+        min-height: calc(100svh - 112px);
+        padding: clamp(50px, 6vw, 90px) clamp(24px, 5vw, 76px)
+          clamp(100px, 11vw, 170px);
+      }
+
+      .back-link {
+        display: inline-flex;
+        gap: 12px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 0.68rem;
+      }
+
+      .back-link:hover,
+      .back-link:focus-visible {
+        color: var(--rust);
+      }
+
+      .series-masthead {
+        display: grid;
+        grid-template-columns: minmax(340px, 0.86fr) minmax(420px, 1.14fr);
+        gap: clamp(42px, 5vw, 78px);
+        align-items: center;
+        max-width: 1320px;
+        margin: clamp(42px, 5vw, 72px) auto 0;
+        padding-bottom: clamp(58px, 7vw, 96px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .series-number {
+        margin: 0 0 25px;
+        color: var(--rust);
+        font-size: 0.72rem;
+      }
+
+      .series-title {
+        font-size: clamp(4rem, 6.7vw, 8rem);
+      }
+
+      .series-english-title {
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.82rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .series-description {
+        margin: 42px 0 0;
+        font-size: 1.08rem;
+        line-height: 2;
+        letter-spacing: 0.055em;
+      }
+
+      .series-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 28px;
+        margin: 36px 0 0;
+        padding-top: 23px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.62rem;
+        line-height: 1.7;
+      }
+
+      .series-meta strong {
+        display: block;
+        margin-top: 5px;
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Songti SC", STSong, SimSun, serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        text-transform: none;
+      }
+
+      .series-detail-image {
+        width: min(100%, 800px);
+        max-height: min(60svh, 540px);
+        display: grid;
+        place-items: center;
+        justify-self: end;
+        overflow: hidden;
+        background: transparent;
+      }
+
+      .series-detail-image.is-portrait {
+        width: min(100%, 440px);
+        max-height: min(68svh, 620px);
+        justify-self: center;
+      }
+
+      .series-cover-button {
+        width: 100%;
+        height: 100%;
+        max-height: min(60svh, 540px);
+        padding: 0;
+        border: 0;
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+        color: var(--ink);
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .series-detail-image img {
+        display: block;
+        width: 100%;
+        height: min(60svh, 540px);
+        object-fit: cover;
+        transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 280ms ease;
+      }
+
+      .series-detail-image.is-portrait .series-cover-button,
+      .series-detail-image.is-portrait img {
+        height: auto;
+        max-height: min(68svh, 620px);
+      }
+
+      .series-detail-image.is-portrait img {
+        object-fit: initial;
+      }
+
+      .series-cover-button:hover img,
+      .series-cover-button:focus-visible img {
+        transform: scale(1.012);
+        filter: contrast(1.04);
+      }
+
+      .series-statement {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 820px);
+        gap: 40px;
+        margin: clamp(70px, 9vw, 130px) 0;
+        padding-bottom: clamp(70px, 9vw, 130px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .series-statement p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 2.15;
+        letter-spacing: 0.055em;
+      }
+
+      .works-heading {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        align-items: end;
+        margin-bottom: clamp(55px, 7vw, 95px);
+      }
+
+      .works-heading h2 {
+        margin: 0;
+        font-size: clamp(2.8rem, 5vw, 6rem);
+        line-height: 1.05;
+      }
+
+      .works-heading p {
+        margin: 0;
+        color: var(--muted);
+        font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .works-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-auto-flow: row dense;
+        align-items: start;
+        gap: clamp(62px, 7vw, 100px) clamp(18px, 2.2vw, 34px);
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .work-card {
+        grid-column: 1 / span 7;
+        width: 100%;
+        max-width: 760px;
+        min-width: 0;
+      }
+
+      .work-card.wide {
+        grid-column: 1 / span 7;
+        justify-self: start;
+      }
+
+      .work-card.portrait {
+        grid-column: 8 / span 4;
+        max-width: 410px;
+        justify-self: end;
+        margin-top: clamp(36px, 5vw, 78px);
+      }
+
+      .work-card.portrait:nth-child(odd) {
+        grid-column: 2 / span 4;
+        justify-self: start;
+        margin-top: 0;
+      }
+
+      .work-card.landscape {
+        grid-column: 5 / span 8;
+        width: 100%;
+        max-width: 800px;
+        justify-self: end;
+      }
+
+      .work-card.full {
+        grid-column: 2 / span 8;
+        width: 100%;
+        max-width: 720px;
+        justify-self: start;
+      }
+
+      .image-button {
+        border: 0;
+        padding: 0;
+        width: 100%;
+        background: transparent;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .image-wrap {
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        position: relative;
+        background: #0f0d0a;
+      }
+
+      .wide .image-wrap,
+      .full .image-wrap,
+      .portrait .image-wrap,
+      .landscape .image-wrap {
+        aspect-ratio: auto;
+      }
+
+      .image-wrap img {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: min(60svh, 580px);
+        object-fit: contain;
+        transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 280ms ease;
+      }
+
+      .portrait .image-wrap img {
+        max-height: min(70svh, 660px);
+      }
+
+      .work-card.portrait .work-caption {
+        display: block;
+      }
+
+      .work-card.portrait .work-caption-details {
+        max-width: none;
+        margin-top: 12px;
+        text-align: left;
+      }
+
+      .view-label {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 14px 18px;
+        background: var(--paper-light);
+        font-family: Inter, Arial, sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        transform: translateY(100%);
+        transition: transform 260ms ease;
+      }
+
+      .image-button:hover img,
+      .image-button:focus-visible img {
+        transform: scale(1.016);
+        filter: contrast(1.05);
+      }
+
+      .image-button:hover .view-label,
+      .image-button:focus-visible .view-label,
+      .series-cover-button:hover .view-label,
+      .series-cover-button:focus-visible .view-label {
+        transform: translateY(0);
+      }
+
+      .work-caption {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: flex-start;
+        border-top: 1px solid var(--line);
+        margin-top: 15px;
+        padding-top: 13px;
+      }
+
+      .work-caption-title {
+        margin: 0;
+        font-size: 1.05rem;
+        letter-spacing: 0.08em;
+      }
+
+      .work-caption-title span {
+        color: var(--rust);
+        margin-right: 10px;
+      }
+
+      .work-caption-details {
+        max-width: 52%;
+        text-align: right;
+      }
+
+      .work-caption small {
+        display: block;
+        color: var(--muted);
+        font-size: 0.56rem;
+      }
+
+      .work-caption-summary {
+        margin: 9px 0 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.75;
+        letter-spacing: 0.035em;
+      }
+
+      footer {
+        min-height: 160px;
+        padding: 34px clamp(24px, 5vw, 76px);
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        align-items: center;
+        gap: 28px;
+        font-size: 0.62rem;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      .wordmark.small {
+        padding: 0;
+        border: 0;
+        font-size: 1.8rem;
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        padding: clamp(14px, 3vw, 44px);
+        display: grid;
+        place-items: center;
+        background: rgba(8, 7, 6, 0.9);
+        backdrop-filter: blur(8px);
+      }
+
+      .lightbox-panel {
+        width: min(1280px, 100%);
+        max-height: calc(100svh - 28px);
+        overflow: auto;
+        display: grid;
+        grid-template-columns: 1.35fr 0.65fr;
+        position: relative;
+        background: var(--paper);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+      }
+
+      .lightbox-image {
+        min-height: 650px;
+        display: grid;
+        place-items: center;
+        background: #090806;
+      }
+
+      .lightbox-image img {
+        width: 100%;
+        height: 100%;
+        max-height: calc(100svh - 88px);
+        object-fit: contain;
+      }
+
+      .lightbox-copy {
+        padding: clamp(75px, 7vw, 110px) clamp(30px, 4vw, 60px) 52px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .lightbox-copy h2 {
+        font-size: clamp(2.8rem, 4vw, 5rem);
+      }
+
+      .lightbox-series {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+      }
+
+      .lightbox-meta {
+        margin: 13px 0 0;
+        color: var(--rust);
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        line-height: 1.7;
+      }
+
+      .lightbox-summary {
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.85;
+        letter-spacing: 0.045em;
+      }
+
+      .lightbox-note {
+        margin: 0;
+        line-height: 2;
+        letter-spacing: 0.05em;
+      }
+
+      .lightbox-copy small {
+        display: block;
+        margin-top: 36px;
+        color: var(--muted);
+        font-size: 0.56rem;
+        line-height: 1.7;
+      }
+
+      .lightbox-nav {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 14px;
+        margin-top: 30px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+
+      .lightbox-nav button {
+        border: 0;
+        padding: 8px 0;
+        color: var(--ink);
+        background: transparent;
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+      }
+
+      .lightbox-nav button:hover,
+      .lightbox-nav button:focus-visible {
+        color: var(--rust);
+      }
+
+      .lightbox-position {
+        color: var(--muted);
+        text-align: center;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.72rem;
+      }
+
+      .close-button {
+        position: absolute;
+        right: 22px;
+        top: 20px;
+        z-index: 2;
+        border: 0;
+        padding: 8px;
+        background: var(--paper);
+        cursor: pointer;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+      }
+
+      .close-button:hover,
+      .close-button:focus-visible {
+        color: var(--rust);
+      }
+
+      .reveal-copy {
+        animation: rise 650ms 100ms both ease-out;
+      }
+
+      .reveal-image {
+        animation: reveal 850ms 180ms both ease-out;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          clip-path: inset(0 0 0 10%);
+        }
+        to {
+          opacity: 1;
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .site-header {
+          min-height: 88px;
+          grid-template-columns: 1fr auto;
+        }
+
+        .wordmark {
+          border-right: 0;
+          font-size: 2.3rem;
+        }
+
+        .site-header nav {
+          padding: 0 22px;
+          gap: 14px;
+          font-size: 0.78rem;
+        }
+
+        .issue {
+          display: none;
+        }
+
+        .hero {
+          height: auto;
+          min-height: 0;
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy {
+          min-height: 0;
+          border-right: 0;
+          padding: 72px clamp(25px, 7vw, 72px) 54px;
+        }
+
+        .hero-image {
+          width: min(calc(100% - 10vw), 900px);
+          height: auto;
+          margin: 0 auto 42px;
+          justify-self: center;
+        }
+
+        .hero.is-portrait .hero-image {
+          width: min(420px, 78vw, 41.333svh);
+          margin: 0 auto 42px;
+        }
+
+        .hero-image-link {
+          height: min(60svh, 520px);
+        }
+
+        .folio {
+          bottom: 20px;
+          top: auto;
+        }
+
+        .series-grid {
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 50px 30px;
+        }
+
+        .series-card:nth-child(even) {
+          margin-top: 42px;
+        }
+
+        .notes-section {
+          grid-template-columns: 95px 1fr;
+        }
+
+        .notes-index {
+          min-height: 600px;
+          padding: 35px 20px;
+        }
+
+        .about-section {
+          grid-template-columns: 1fr;
+        }
+
+        .about-section > p {
+          margin-top: 0;
+        }
+
+        .series-masthead {
+          grid-template-columns: 1fr;
+          max-width: 820px;
+        }
+
+        .series-detail-image {
+          width: min(100%, 720px);
+          max-height: min(62svh, 520px);
+          justify-self: center;
+        }
+
+        .series-detail-image.is-portrait {
+          width: min(100%, 420px);
+          max-height: min(65svh, 560px);
+        }
+
+        .series-cover-button,
+        .series-detail-image img {
+          max-height: min(62svh, 520px);
+        }
+
+        .series-statement {
+          grid-template-columns: 120px 1fr;
+        }
+
+        .works-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 70px 34px;
+        }
+
+        .work-card,
+        .work-card.wide,
+        .work-card.portrait,
+        .work-card.landscape,
+        .work-card.full {
+          grid-column: auto;
+          width: 100%;
+          max-width: 100%;
+          justify-self: stretch;
+          margin-top: 0;
+        }
+
+        .work-card.portrait {
+          max-width: 390px;
+          justify-self: center;
+        }
+
+        .lightbox-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .lightbox-image {
+          min-height: 50svh;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .site-header {
+          min-height: auto;
+          grid-template-columns: 1fr;
+          padding: 18px 0;
+        }
+
+        .wordmark {
+          padding: 0 20px;
+          font-size: 1.8rem;
+        }
+
+        .site-header nav {
+          justify-content: flex-start;
+          padding: 16px 20px 0;
+          gap: 17px;
+          font-size: 0.7rem;
+        }
+
+        .hero-copy {
+          min-height: 0;
+          padding: 58px 25px 48px;
+        }
+
+        .hero h1 {
+          font-size: clamp(3.3rem, 16vw, 5rem);
+        }
+
+        .primary-link {
+          width: 100%;
+        }
+
+        .hero-image {
+          width: calc(100% - 50px);
+          margin: 0 25px 32px;
+        }
+
+        .hero.is-portrait .hero-image {
+          width: min(86vw, 40svh);
+          margin: 0 auto 32px;
+        }
+
+        .hero.is-square .hero-image {
+          width: min(86vw, 520px);
+        }
+
+        .hero-image-link {
+          height: min(58svh, 440px);
+        }
+
+        .hero-media-controls {
+          margin-top: 12px;
+        }
+
+        .folio {
+          display: none;
+        }
+
+        .section-heading {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .series-grid {
+          grid-template-columns: 1fr;
+          gap: 70px;
+        }
+
+        .series-card:nth-child(even) {
+          margin-top: 0;
+        }
+
+        .series-card {
+          max-width: none;
+        }
+
+        .series-card.is-landscape .series-card-cover,
+        .series-card.is-square .series-card-cover {
+          aspect-ratio: 3 / 2;
+        }
+
+        .series-card.is-portrait .series-card-cover {
+          width: min(86%, 420px);
+        }
+
+        .series-card-heading {
+          display: block;
+        }
+
+        .series-count {
+          margin-top: 16px;
+        }
+
+        .notes-section {
+          grid-template-columns: 1fr;
+        }
+
+        .notes-index {
+          display: none;
+        }
+
+        .notes-copy {
+          padding: 88px 25px;
+        }
+
+        .notes-columns {
+          grid-template-columns: 1fr;
+          margin-top: 46px;
+        }
+
+        .about-section {
+          padding-left: 25px;
+          padding-right: 25px;
+        }
+
+        .next-series {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .series-detail {
+          padding-left: 25px;
+          padding-right: 25px;
+        }
+
+        .series-masthead {
+          grid-template-columns: 1fr;
+        }
+
+        .series-title {
+          font-size: clamp(3.4rem, 17vw, 5.5rem);
+        }
+
+        .series-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .series-detail-image {
+          width: 100%;
+          max-height: none;
+        }
+
+        .series-detail-image.is-portrait {
+          width: min(84%, 420px);
+          max-height: min(64svh, 520px);
+        }
+
+        .series-cover-button,
+        .series-detail-image img {
+          max-height: 72svh;
+        }
+
+        .series-detail-image.is-portrait .series-cover-button,
+        .series-detail-image.is-portrait img {
+          max-height: min(64svh, 520px);
+        }
+
+        .series-statement {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+
+        .works-heading {
+          display: block;
+        }
+
+        .works-heading p {
+          margin-top: 16px;
+        }
+
+        .works-grid {
+          grid-template-columns: 1fr;
+          gap: 60px;
+        }
+
+        .work-card,
+        .work-card.wide,
+        .work-card.portrait,
+        .work-card.portrait:nth-child(odd),
+        .work-card.landscape,
+        .work-card.full {
+          width: 100%;
+          max-width: none;
+          grid-column: 1 / -1;
+          justify-self: stretch;
+          margin-top: 0;
+        }
+
+        .image-wrap img,
+        .portrait .image-wrap img {
+          width: 100%;
+          max-height: none;
+        }
+
+        .work-caption {
+          display: block;
+        }
+
+        .work-caption-details {
+          max-width: none;
+          margin-top: 12px;
+          text-align: left;
+        }
+
+        footer {
+          grid-template-columns: 1fr;
+          min-height: 230px;
+        }
+
+        footer .wordmark.small {
+          padding: 0;
+        }
+
+        .lightbox {
+          padding: 0;
+        }
+
+        .lightbox-panel {
+          max-height: 100svh;
+          min-height: 100svh;
+          border: 0;
+        }
+
+        .lightbox-image {
+          min-height: 43svh;
+        }
+
+        .lightbox-copy {
+          padding: 60px 25px 42px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#home" aria-label="回到栏目首页">LilD Photos</a>
+      <nav aria-label="主导航">
+        <a href="#home">首页</a>
+        <a href="#works">作品</a>
+        <a href="#notes">札记</a>
+        <a href="#about">关于</a>
+      </nav>
+      <p class="issue"><span>ARCHIVE</span> 01</p>
+    </header>
+
+    <main>
+      <div id="home-view">
+        <section
+          class="hero is-landscape"
+          id="home"
+          aria-labelledby="hero-title"
+          aria-roledescription="carousel"
+          aria-label="摄影栏目封面轮播"
+          tabindex="0"
+        >
+          <div class="hero-copy reveal-copy">
+            <p class="eyebrow" id="hero-series-number">SERIES 01 / PERSONAL ARCHIVE</p>
+            <h1 id="hero-title">拖车人生</h1>
+            <p class="location" id="hero-series-english">Lives with Handcarts</p>
+            <div class="hairline" aria-hidden="true"></div>
+            <p class="dek" id="hero-series-description">
+              记录广州沙河及周边街头，依靠手推车劳动、运输、等待和生活的人，也记录工具与城市空间之间的关系。
+            </p>
+            <p class="series-count" id="hero-series-count">07 PHOTOGRAPHS</p>
+            <a class="primary-link" id="hero-series-link" href="#series-tuoche-rensheng">
+              进入栏目 <span aria-hidden="true">⟶</span>
+            </a>
+          </div>
+
+          <figure class="hero-image reveal-image" id="hero-image-frame">
+            <a
+              class="hero-image-link"
+              id="hero-image-link"
+              href="#series-tuoche-rensheng"
+              aria-label="进入摄影栏目《拖车人生》"
+            >
+              <img
+                id="hero-carousel-image"
+                src="photos/tuoche-rensheng/cover.jpg"
+                fetchpriority="high"
+                alt="高架桥下，一位戴遮阳帽的人坐在平板车前端，旁边停着一辆电动车"
+              />
+            </a>
+            <div class="hero-media-controls">
+              <div class="carousel-dots" id="carousel-dots" aria-label="选择栏目封面"></div>
+              <figcaption id="hero-caption">拖车人生 · 07 张照片</figcaption>
+            </div>
+          </figure>
+          <p class="folio" aria-hidden="true"><span>01</span> / ARCHIVE</p>
+        </section>
+
+        <section class="series-index-section" id="works" aria-labelledby="works-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">PHOTOGRAPHIC SERIES / 栏目</p>
+              <h2 id="works-title">摄影栏目</h2>
+            </div>
+            <p class="section-intro">
+              照片按照拍摄线索和系列分别整理。进入栏目后，可以阅读栏目说明，查看其中的全部照片和单幅解读。
+            </p>
+          </div>
+          <div class="series-grid" id="series-grid" aria-label="摄影栏目列表"></div>
+          <noscript>请在浏览器中启用 JavaScript，以查看摄影栏目和作品弹窗。</noscript>
+        </section>
+
+        <section class="notes-section" id="notes" aria-labelledby="notes-title">
+          <div class="notes-index" aria-hidden="true">
+            <span>02</span>
+            <span>FIELD NOTE</span>
+          </div>
+          <div class="notes-copy">
+            <p class="section-kicker">拍摄札记 / FIELD NOTE</p>
+            <h2 id="notes-title">在行走中整理照片</h2>
+            <div class="notes-columns">
+              <p>
+                我会拍街头，也会拍旅途中遇到的风景、建筑和动物。题材并不固定，更多时候是先被一个动作、一段光线或人与环境之间的距离吸引，再按下快门。
+              </p>
+              <p>
+                这个网站按照栏目慢慢整理照片。文字只说明当时看见了什么、为什么留下这一帧，不替画面里的人发言，也不急着给每张照片一个很重的结论。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="about-section" id="about" aria-labelledby="about-title">
+          <div>
+            <p class="section-kicker">ABOUT / ARCHIVE</p>
+            <h2 id="about-title">一份持续生长的个人摄影档案</h2>
+          </div>
+          <p>
+            这里收录不同阶段的摄影栏目、组图、拍摄札记和单幅解读。新的照片会继续加入，也会保留尚未完成的系列，让整理本身成为拍摄的一部分。
+          </p>
+          <p>
+            本站照片版权归作者所有，未经许可请勿转载、复制或用于商业用途。
+          </p>
+          <div class="next-series">
+            <span>NEXT SERIES</span>
+            <strong>下一组照片，仍在路上</strong>
+          </div>
+        </section>
+      </div>
+
+      <section class="series-detail" id="series-view" aria-labelledby="series-title" hidden>
+        <a class="back-link" href="#works"><span aria-hidden="true">←</span> 返回全部栏目</a>
+
+        <div class="series-masthead">
+          <div>
+            <p class="series-number" id="series-number"></p>
+            <h1 class="series-title" id="series-title"></h1>
+            <p class="series-english-title" id="series-english-title"></p>
+            <p class="series-description" id="series-description"></p>
+            <div class="series-meta">
+              <p>类型<strong id="series-category"></strong></p>
+              <p>地点<strong id="series-location"></strong></p>
+              <p>状态<strong id="series-status"></strong></p>
+              <p>收录<strong id="series-count"></strong></p>
+            </div>
+          </div>
+          <figure class="series-detail-image">
+            <button class="series-cover-button" id="series-cover-button" type="button">
+              <img id="series-cover" src="photos/tuoche-rensheng/000_5925.jpg" alt="" />
+              <span class="view-label">查看封面作品解读 ⟶</span>
+            </button>
+          </figure>
+        </div>
+
+        <div class="series-statement">
+          <p class="section-kicker">SERIES NOTE / 栏目说明</p>
+          <p id="series-note"></p>
+        </div>
+
+        <div class="works-heading">
+          <h2>栏目作品</h2>
+          <p id="series-work-total"></p>
+        </div>
+        <div class="works-grid" id="series-works-grid"></div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="wordmark small" href="#home">LilD Photos</a>
+      <p>街上见 · 个人摄影作品集</p>
+      <p>© 2026 LilD Photos · 摄影作品版权归作者所有</p>
+    </footer>
+
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-title"
+      hidden
+    >
+      <div class="lightbox-panel">
+        <button class="close-button" id="close-lightbox" type="button" aria-label="关闭作品解读">
+          关闭 ×
+        </button>
+        <div class="lightbox-image">
+          <img id="lightbox-img" src="photos/tuoche-rensheng/000_5918.jpg" alt="" />
+        </div>
+        <div class="lightbox-copy">
+          <p class="section-kicker" id="lightbox-kicker">IMAGE 01 / PHOTOGRAPH</p>
+          <h2 id="lightbox-title"></h2>
+          <p class="lightbox-series" id="lightbox-series"></p>
+          <p class="lightbox-meta" id="lightbox-meta"></p>
+          <p class="lightbox-summary" id="lightbox-summary"></p>
+          <div class="hairline" aria-hidden="true"></div>
+          <p class="lightbox-note" id="lightbox-note"></p>
+          <div class="lightbox-nav" aria-label="作品切换">
+            <button id="previous-work" type="button" aria-label="查看上一张作品">← 上一张</button>
+            <span class="lightbox-position" id="lightbox-position"></span>
+            <button id="next-work" type="button" aria-label="查看下一张作品">下一张 →</button>
+          </div>
+          <small>个人摄影作品 · LilD Photos</small>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      "use strict";
+
+      /*
+       * ======================== 中文维护说明 ========================
+       *
+       * 1. 新增栏目：在下面的 seriesList 数组中，复制一整个栏目对象，
+       *    修改 id、编号、标题、栏目说明、封面和 works 数组即可。
+       * 2. 新增照片：在对应栏目的 works 数组中，复制一个作品对象并修改。
+       * 3. 图片路径：发布版图片统一放在 photos 目录，例如：
+       *    photos/tuoche-rensheng/000_5918.jpg
+       * 4. coverWorkId 从 works 数组中指定栏目封面；封面仍计入作品总数，
+       *    但不会在栏目详情下方重复显示。
+       * 5. position 控制单张照片缩略图裁切位置，可写 "50% 50%"、
+       *    "left center"、"60% 40%" 等。
+       * 6. shape 可选：wide、portrait、landscape、full。
+       * 7. 浏览器直接打开本地网页时不能可靠地自动扫描文件夹，
+       *    因此新增照片后需要手动在这里登记。
+       *
+       * ============================================================
+       */
+      const seriesList = [
+        {
+          "id": "tuoche-rensheng",
+          "number": "01",
+          "title": "拖车人生",
+          "englishTitle": "Lives with Handcarts",
+          "category": "人文摄影",
+          "location": "广州 · 沙河及周边",
+          "status": "持续拍摄中",
+          "coverWorkId": "cover",
+          "coverShape": "wide",
+          "description": "记录广州沙河及周边街头，依靠手推车劳动、运输、等待和生活的人，也记录工具与城市空间之间的关系。",
+          "note": "我住在广州沙河地铁站附近，日常去学校或在周边行走时，经常看见手推车出现在街道、路口和高架桥下。有人拉着货物经过，也有人在阴影里等待或休息。这个系列不只关注手推车本身，更想保留人、劳动工具和城市空间在同一个瞬间里的关系。拍摄仍在继续，文字也只从画面中可以确认的细节出发。",
+          "works": [
+            {
+              "id": "cover",
+              "src": "photos/tuoche-rensheng/cover.jpg",
+              "alt": "高架桥下，一位戴遮阳帽的人坐在平板车前端，旁边停着一辆电动车",
+              "title": "车边坐下",
+              "scene": "广州街头 · 高架桥下",
+              "summary": "一人坐在平板车前端低头看手机，电动车和栏杆把近处空间分开。",
+              "note": "平板车停在高架桥下的阴影里，一位戴帽子的人坐在车头位置，手里拿着手机。电动车靠在一旁，栏杆之外仍有车辆经过。照片保留的是人和工具一起停下来的具体状态，没有再为这段休息补充画面之外的故事。",
+              "shape": "landscape",
+              "position": "50% 58%"
+            },
+            {
+              "id": "01",
+              "src": "photos/tuoche-rensheng/000_5918.jpg",
+              "alt": "楼下墙边停着几辆手推车，车身分别盖着白布、条纹布和绿色防水布",
+              "title": "墙边盖布",
+              "scene": "广州街边 · 楼下墙边",
+              "summary": "几辆手推车沿墙停放，不同颜色的盖布把车身和随车物品遮住。",
+              "note": "墙面下方依次停着自行车、手推车和几件被布覆盖的物品。画面里没有人物，只有工具和临时覆盖留下的形状。与其猜测布下面放着什么，这张照片更直接地记录了车辆如何占用并整理这段楼下空间。",
+              "shape": "wide",
+              "position": "50% 56%"
+            },
+            {
+              "id": "02",
+              "src": "photos/tuoche-rensheng/000_5920.jpg",
+              "alt": "城市路口的导流线上，一人坐在装满黑色包裹的平板车上，另一人站在车旁",
+              "title": "路口推车",
+              "scene": "广州街头 · 城市路口",
+              "summary": "两个人和装着包裹的平板车停在导流线之间，身后的车辆继续通过路口。",
+              "note": "平板车停在路口标线内，一人坐在包裹旁，另一人站在车边。后方汽车、电动车和行人不断经过，车上的货物与道路上的箭头都指向不同方向。这是一次短暂停留，也是街头交通继续运行时留下的普通切片。",
+              "shape": "landscape",
+              "position": "52% 50%"
+            },
+            {
+              "id": "03",
+              "src": "photos/tuoche-rensheng/000_5925.jpg",
+              "alt": "高架桥下三个人停在几辆手推车旁，栏杆外仍有车辆经过",
+              "title": "桥下停靠",
+              "scene": "广州街头 · 高架桥下",
+              "summary": "三个人围在手推车旁坐下或站立，桥下阴影与路外亮处形成分界。",
+              "note": "高架桥下的阴影里停着几辆手推车，三个人分别坐在车边或站在一旁。栏杆之外仍有车辆经过，桥柱和道路把停留与通行分在画面两侧。照片只记录这一刻可见的人、车和空间关系。",
+              "shape": "landscape",
+              "position": "50% 54%"
+            },
+            {
+              "id": "04",
+              "src": "photos/tuoche-rensheng/000_5959.jpg",
+              "alt": "树下路边，两个人坐在铺着布的平板车上看手机，后方还停着几辆手推车",
+              "title": "树下歇脚",
+              "scene": "广州街头 · 高架桥旁",
+              "summary": "两个人坐在平板车上低头看手机，更多手推车沿树荫和路边停放。",
+              "note": "平板车被当成了可以坐下的地方，两个人并排留在车上，手边放着水壶和随车物品。更远处还有几辆车停在树下，马路上的电动车从亮处经过。画面把短暂休息和道路通行放在同一个层次里。",
+              "shape": "wide",
+              "position": "50% 54%"
+            },
+            {
+              "id": "05",
+              "src": "photos/tuoche-rensheng/000_5963.jpg",
+              "alt": "高架桥柱之间，一人背对镜头坐在平板车上，另一辆手推车停在左侧",
+              "title": "桥柱之间",
+              "scene": "广州街头 · 高架桥下",
+              "summary": "一人背对镜头坐在平板车边，几辆车散落在桥柱和路口之间。",
+              "note": "近处的人坐在平板车上，背部朝向镜头；另一辆车停在左侧，远处还有人和车辆经过。桥柱反复切分背景，路面的标线向前延伸，让这段停留显得很短，也很具体。",
+              "shape": "landscape",
+              "position": "52% 52%"
+            },
+            {
+              "id": "06",
+              "src": "photos/tuoche-rensheng/000_5967.jpg",
+              "alt": "树荫下，一人推着蓝绿色平板车走向街角，前景还有一副空车架和水壶",
+              "title": "推车上路",
+              "scene": "广州街头 · 路边",
+              "summary": "一人推着空平板车离开树荫，前景的车架和水壶仍留在原处。",
+              "note": "画面前方放着一副金属车架、布袋和水壶，另一辆蓝绿色平板车正被推向街角。推车的人背对镜头，车辆的方向与弯曲道路一致。照片记录的是工具重新开始移动的瞬间。",
+              "shape": "wide",
+              "position": "58% 52%"
+            }
+          ],
+          "coverOrientation": "landscape",
+          "homeCoverPosition": "50% 58%",
+          "heroCoverPosition": "50% 58%",
+          "detailCoverPosition": "50% 58%",
+          "coverPosition": "50% 58%"
+        },
+        {
+          "id": "shandong",
+          "number": "02",
+          "title": "山东影像",
+          "englishTitle": "Shandong Images",
+          "category": "旅途影像",
+          "location": "山东 · 旅途中",
+          "status": "持续整理中",
+          "coverWorkId": "cover",
+          "coverShape": "wide",
+          "description": "一组在山东旅途中整理出的影像，从舷窗、建筑、海面到晚霞与经过的人，记录空间、光线和行走中的片刻。",
+          "note": "这一栏目里的照片没有被归纳成单一主题。它们在开阔与阴影之间来回：云层之上的天光、建筑内部的亮口、海面留下的旧桩，以及水边看晚霞的人。具体城市、建筑名称和拍摄日期还需要继续补充，因此目前只保留可以从画面中确认的内容。",
+          "works": [
+            {
+              "id": "cover",
+              "src": "photos/shandong/cover.jpg",
+              "alt": "水边几组大型弧形轮廓以剪影落在灰色背景前",
+              "title": "岸边剪影",
+              "scene": "山东 · 水边",
+              "summary": "几组大型弧形轮廓落成剪影，远处水面和天空被压成灰色层次。",
+              "note": "画面中的物体以剪影出现，像几组相互分开的弧面。背景的水面和天空被处理得很平，主体因此更接近抽象形状。由于无法仅凭照片确认这些物体的具体名称，这里不作进一步判断。",
+              "shape": "full",
+              "position": "50% 55%"
+            },
+            {
+              "id": "01",
+              "src": "photos/shandong/000_5416-nr-1.jpg",
+              "alt": "飞机舷窗框住云海与天边的橙色光线",
+              "title": "云层之上",
+              "scene": "旅途中 · 舷窗边",
+              "summary": "舷窗把云层和天边的光收进一个窄小的椭圆形画框。",
+              "note": "窗外的云层铺满下方，天边只留下一道暖色。舷窗边缘占据了画面的大部分，视线因此被限制在一个很小的出口里。照片记录的是旅途中的短暂观看：人在移动，远处的光线也在慢慢变化。",
+              "shape": "portrait",
+              "position": "50% 50%"
+            },
+            {
+              "id": "02",
+              "src": "photos/shandong/000_5541-nr.jpg",
+              "alt": "黑白建筑内部，一名行人从阴影走向弧形出口的亮处",
+              "title": "走向亮处",
+              "scene": "山东 · 建筑通道",
+              "summary": "弧形出口切开大片阴影，一名行人和影子一起走向室外。",
+              "note": "建筑内部几乎完全落在黑暗里，弧形出口和地面的光带把空间打开。行人位于明暗交界处，身体与长影形成一条向外延伸的线。画面吸引我的不是建筑名称，而是人在巨大空间里经过时留下的尺度感。",
+              "shape": "portrait",
+              "position": "50% 66%"
+            },
+            {
+              "id": "03",
+              "src": "photos/shandong/000_5546.jpg",
+              "alt": "黑白建筑通道中，一名提桶的人从暗处经过",
+              "title": "提桶的人",
+              "scene": "山东 · 建筑通道",
+              "summary": "一名提桶的人从暗处经过，弧形出口把室外留在画面另一侧。",
+              "note": "同一处明暗强烈的通道里，提桶的人从画面右侧经过。人物几乎成为剪影，只在轮廓边缘留下少量亮光。远处出口仍然清楚，但这一次，日常动作比出口本身更靠近镜头。",
+              "shape": "portrait",
+              "position": "58% 62%"
+            },
+            {
+              "id": "04",
+              "src": "photos/shandong/000_5563.jpg",
+              "alt": "开阔的天空和地面之间，一个人抬腿向前走",
+              "title": "旷地上的一步",
+              "scene": "山东 · 开阔场地",
+              "summary": "大片天空和地面之间，一个人的动作停在迈步的瞬间。",
+              "note": "画面大部分留给天空，人物被放在接近地平线的位置。抬起的脚和张开的手臂让普通的行走多了一点不稳定感。周围没有更多可辨认的地点信息，留下的是开阔空间与一个很小动作之间的对照。",
+              "shape": "portrait",
+              "position": "50% 66%"
+            },
+            {
+              "id": "05",
+              "src": "photos/shandong/000_5569.jpg",
+              "alt": "灰色海面上，两组旧桩从平静水面伸出",
+              "title": "海面上的旧桩 I",
+              "scene": "山东 · 海边",
+              "summary": "两组旧桩分散在平静海面上，远近与间隔成为画面的主要节奏。",
+              "note": "长时间曝光让海面变得平缓，旧桩的轮廓因此更加清楚。它们分成两组留在水里，没有明显的叙事，只通过距离、高低和间隔组成画面。这是一张关于观看秩序的照片，也保留了海边阴沉而安静的天气。",
+              "shape": "landscape",
+              "position": "50% 50%"
+            },
+            {
+              "id": "06",
+              "src": "photos/shandong/architecture-dusk.jpg",
+              "alt": "暮色天空下，一座白色弧形建筑从低处向上延伸",
+              "title": "暮色里的弧面",
+              "scene": "山东 · 建筑外部",
+              "summary": "白色弧形建筑向上收拢，晚霞沿着两侧天空展开。",
+              "note": "低机位让建筑的弧面占据大部分画面，细小的开口和下方行人提供了尺度。暮色把混凝土表面染得柔和，天空的云从建筑两侧向外延伸。具体建筑名称尚未确认，因此这里只保留形状、光线和当时的观看角度。",
+              "shape": "full",
+              "position": "50% 46%"
+            },
+            {
+              "id": "07",
+              "src": "photos/shandong/sunset-platform.jpg",
+              "alt": "粉紫色晚霞下，人们站在伸向水面的观景平台上",
+              "title": "看晚霞的人",
+              "scene": "山东 · 水边观景平台",
+              "summary": "人们停在观景平台上，长时间曝光让经过的身影和晚霞一起变得柔和。",
+              "note": "晚霞占据大部分画面，观景平台从左侧伸向水面。平台上的人有的站着，有的正在移动，长时间曝光让部分身影变得透明。下方还有一名独自坐着的人，和平台上的人群保持着距离。照片记录的是大家在同一片晚霞前各自停留的方式。",
+              "shape": "landscape",
+              "position": "50% 48%"
+            }
+          ],
+          "coverOrientation": "landscape",
+          "homeCoverPosition": "50% 56%",
+          "heroCoverPosition": "50% 56%",
+          "detailCoverPosition": "50% 56%",
+          "coverPosition": "50% 56%"
+        },
+        {
+          "id": "landscape",
+          "number": "03",
+          "title": "风光摄影",
+          "englishTitle": "Landscape Photography",
+          "category": "风光摄影",
+          "location": "旅途中",
+          "status": "持续整理中",
+          "coverWorkId": "cover",
+          "coverShape": "wide",
+          "coverOrientation": "landscape",
+          "homeCoverPosition": "50% 48%",
+          "heroCoverPosition": "50% 48%",
+          "detailCoverPosition": "50% 48%",
+          "coverPosition": "50% 48%",
+          "description": "记录旅途中遇见的天色、水面和开阔空间，保留自然光线改变环境的具体时刻。",
+          "note": "这个栏目从一张黄昏水岸开始。树木、建筑和云层沿水面展开，晚霞在倒影里形成另一条延伸的天空。后续照片仍会从真实可见的天气、地形和空间出发，不为地点补写未经确认的故事。",
+          "works": [
+            {
+              "id": "cover",
+              "src": "photos/landscape/cover.jpg",
+              "alt": "黄昏时的水道两侧排列着树木和建筑，粉紫色晚霞映在平静水面上",
+              "title": "水面晚霞",
+              "scene": "水边 · 黄昏",
+              "summary": "晚霞沿水道和倒影向远处延伸，两侧树影把画面收拢在中央。",
+              "note": "天色从紫蓝过渡到橙红，平静水面把云层和岸边灯光完整地接住。两侧树木形成深色边框，中间的水道把视线带向远处。照片保留的是黄昏光线与水面短暂重合的时刻。",
+              "shape": "wide",
+              "position": "50% 48%"
+            }
+          ]
+        },
+        {
+          "id": "architecture",
+          "number": "04",
+          "title": "建筑摄影",
+          "englishTitle": "Architecture",
+          "category": "建筑摄影",
+          "location": "城市与旅途中",
+          "status": "持续更新中",
+          "coverWorkId": "cover",
+          "coverShape": "portrait",
+          "description": "记录城市与旅途中遇见的建筑空间，关注立面、结构、材质、光影，以及人在建筑尺度中的位置。",
+          "note": "这些照片来自不同的行走片段。有时吸引我的是一整座建筑的轮廓，有时只是墙面上的开口、柱廊的秩序或水面留下的倒影。具体建筑名称和地点尚未逐一确认，因此这一栏目先从画面中能够看见的结构、光线与空间关系出发。",
+          "works": [
+            {
+              "id": "cover",
+              "src": "photos/architecture/cover.jpg",
+              "alt": "白色墙面上分布着大小不同的黑色窗洞，屋顶曲线从上方经过",
+              "title": "白墙开口",
+              "scene": "建筑立面",
+              "summary": "大小不同的窗洞散落在白墙上，曲线屋顶打破了立面的垂直秩序。",
+              "note": "画面大部分由白色墙面组成，窗洞、通风口和下方凸窗形成疏密不同的黑色块面。屋顶边缘以一条弧线经过，让原本平整的立面多了一次转折。",
+              "shape": "portrait",
+              "position": "50% 50%"
+            },
+            {
+              "id": "01",
+              "src": "photos/architecture/000_4891-nr.jpg",
+              "alt": "黑白画面中，深色建筑立面向街面展开，一名撑伞的人从前方经过",
+              "title": "雨后立面",
+              "scene": "城市空间 · 建筑外部",
+              "summary": "深色立面、湿润地面和撑伞的人，共同标出建筑与街面的尺度。",
+              "note": "建筑的长边从画面左侧向远处延伸，玻璃与金属表面接住有限的亮光。前方撑伞的人很小，却让立面的高度和街面的空旷变得清楚。",
+              "shape": "landscape",
+              "position": "50% 52%"
+            },
+            {
+              "id": "02",
+              "src": "photos/architecture/000_4936.jpg",
+              "alt": "暖色光线下，一座带有大面积斜面和层叠屋顶的建筑立在坡地上",
+              "title": "坡地折面",
+              "scene": "建筑外部 · 坡地空间",
+              "summary": "倾斜屋顶、草坡和步道沿着不同方向展开，建筑像从地面折起。",
+              "note": "建筑没有用正立面面对镜头，屋顶和外墙以几组斜线向两侧伸展。草坡、台阶与道路把视线带向入口，也让建筑和地形保持着连续关系。",
+              "shape": "wide",
+              "position": "50% 48%"
+            },
+            {
+              "id": "03",
+              "src": "photos/architecture/000_5069-nr.jpg",
+              "alt": "红砖柱廊围合一处院落，中间的狭长水面映出建筑和天空",
+              "title": "院中水面",
+              "scene": "建筑内部 · 开放院落",
+              "summary": "柱廊从两侧向中间收拢，水面把建筑的对称关系延伸到地面。",
+              "note": "两侧柱廊把视线引向院落深处，中央水面则保留了另一组倒置的建筑。光线从上方进入，砖墙的暖色与阴影里的冷色在同一空间里并置。",
+              "shape": "landscape",
+              "position": "50% 50%"
+            },
+            {
+              "id": "04",
+              "src": "photos/architecture/000_5079-nr.jpg",
+              "alt": "竖幅画面中，一座带钟面的高塔立在低矮建筑和开阔天空之间",
+              "title": "钟楼与云",
+              "scene": "建筑外部 · 开阔街面",
+              "summary": "高塔从低矮建筑之间升起，云层和地面道路共同拉开纵向尺度。",
+              "note": "竖幅把更多空间留给天空，高塔因此成为画面里最明确的垂直线。下方道路、树木和建筑保持低位，让塔身与云的距离显得更开阔。",
+              "shape": "portrait",
+              "position": "50% 50%"
+            },
+            {
+              "id": "05",
+              "src": "photos/architecture/000_5849-nr.jpg",
+              "alt": "从下方仰望一组白色旋转楼梯，弧形梯段围绕中央空隙层层向上",
+              "title": "旋梯向上",
+              "scene": "建筑内部 · 旋转楼梯",
+              "summary": "弧形梯段围绕中央空隙逐层上升，暖色光线落在白色结构表面。",
+              "note": "镜头从楼梯底部向上看，几段弧形梯板和墙面在中央开口周围反复交叠。结构本身形成清楚的旋转方向，顶部的暖色光线为每一层留下细微差别。",
+              "shape": "landscape",
+              "position": "50% 48%"
+            },
+            {
+              "id": "06",
+              "src": "photos/architecture/concrete-cone.jpg",
+              "alt": "黑白画面中，一座混凝土锥形建筑从宽阔底部向天空收拢",
+              "title": "向上收拢",
+              "scene": "建筑外部 · 开放场地",
+              "summary": "弧形混凝土表面从地面向上聚拢，开口和细小窗洞沿塔身分布。",
+              "note": "低机位让建筑占据大部分天空，底部拱形开口与塔身上的狭长孔洞提供了少量尺度参照。长曝光后的云层沿建筑两侧移动，强化了向上的方向。",
+              "shape": "full",
+              "position": "50% 48%"
+            }
+          ],
+          "coverOrientation": "portrait",
+          "homeCoverPosition": "50% 42%",
+          "heroCoverPosition": "50% 42%",
+          "detailCoverPosition": "50% 42%",
+          "coverPosition": "50% 42%"
+        },
+        {
+          "id": "documentary",
+          "number": "05",
+          "title": "人文纪实",
+          "englishTitle": "Documentary Photography",
+          "category": "人文纪实",
+          "location": "城市街头",
+          "status": "持续更新中",
+          "coverWorkId": "cover",
+          "coverShape": "wide",
+          "description": "收录尚未形成独立专题的人文与街头照片，关注普通动作、短暂停留，以及人与周边环境之间的关系。",
+          "note": "这个栏目保留行走中遇见的日常片段：有人坐在路边，有人在车辆旁休息，也有人在建筑下作业或沿乡间道路经过。文字只说明当时能够确认的动作、距离和空间，不替画面里的人解释身份与处境。",
+          "works": [
+            {
+              "id": "cover",
+              "src": "photos/documentary/cover.jpg",
+              "alt": "山间道路上，一辆汽车向前驶来，路边一人提着两个容器向远处走",
+              "title": "山路相逢",
+              "scene": "乡间道路",
+              "summary": "汽车与提着容器的行人在弯曲道路两侧相遇，远处山体层层展开。",
+              "note": "道路从近处转入山林，一辆汽车朝镜头方向驶来，右侧行人提着两个容器沿路前行。车辆、行人和远山各自占据不同距离，画面记录的是一次普通的路上相遇。",
+              "shape": "wide",
+              "position": "58% 58%"
+            },
+            {
+              "id": "01",
+              "src": "photos/documentary/000_5915.jpg",
+              "alt": "黑白街景中，一人坐在遮布和工具旁，另一人停在围栏外的路边",
+              "title": "树荫之间",
+              "scene": "城市街边",
+              "summary": "树干、立柱和围栏把两个人分在画面两侧，身后的车流持续经过。",
+              "note": "近处的人坐在遮布与工具旁，隔着立柱和围栏，另一人停在道路边缘。树木和栏杆把街边切成几块短暂可停留的空间，后方车辆仍按自己的节奏移动。",
+              "shape": "wide",
+              "position": "50% 52%"
+            },
+            {
+              "id": "02",
+              "src": "photos/documentary/resting-carts.jpg",
+              "alt": "黑白街景中，几辆小型车辆停在路边，有人躺在车板上休息",
+              "title": "并排歇息",
+              "scene": "城市街头 · 路边",
+              "summary": "几辆小型车辆沿人行道停放，人们以不同姿势留在车旁和台阶边。",
+              "note": "前后两辆车板上都有人靠躺，车辆之间还夹着随身物品与日常用品。更远处有人坐在台阶边，马路上的车继续经过；停顿与移动同时留在画面里。",
+              "shape": "landscape",
+              "position": "52% 50%"
+            },
+            {
+              "id": "03",
+              "src": "photos/documentary/dscf7635.jpg",
+              "alt": "建筑屋檐下，一人站在脚手架上伸手处理顶面，前景立着一把折梯",
+              "title": "梯前作业",
+              "scene": "建筑空间 · 屋檐下",
+              "summary": "一人站在脚手架上伸手作业，前景折梯与顶面线条形成明显的高低关系。",
+              "note": "画面把大部分空间留给建筑顶面和横向梁板，作业的人位于下方，手臂向上伸展。前景的折梯没有被使用，却成为清楚的尺度参照。照片只记录这一刻可见的工具、动作和建筑空间。",
+              "shape": "portrait",
+              "position": "50% 68%"
+            }
+          ],
+          "coverOrientation": "landscape",
+          "homeCoverPosition": "58% 58%",
+          "heroCoverPosition": "58% 58%",
+          "detailCoverPosition": "58% 58%",
+          "coverPosition": "58% 58%"
+        },
+        {
+          "id": "xiangjian-hechu",
+          "number": "06",
+          "title": "乡归何处",
+          "englishTitle": "Rural Notes",
+          "category": "乡间影像",
+          "location": "乡间途中",
+          "status": "持续整理中",
+          "coverWorkId": "cover",
+          "coverShape": "wide",
+          "description": "收录在乡间行走时看见的房屋、巷道、田地和日常动作，也记录新旧空间在同一条路边相遇的方式。",
+          "note": "这些照片沿着村落道路慢慢展开：低矮砖屋、田地、山脚街面，也有厂房、车辆和远处的新楼进入视野。它们没有组成关于乡间的单一答案，我只想保留沿途可见的生活痕迹，并继续追问这些空间正在如何变化。具体地点尚未确认，栏目名称采用原始作品文件夹中的“乡归何处”。",
+          "works": [
+            {
+              "id": "01",
+              "src": "photos/xiangjian-hechu/000009.jpg",
+              "alt": "低矮砖屋围着一块长有杂草的空地，远处可见较高的房屋",
+              "title": "砖屋之间",
+              "scene": "村落一角",
+              "summary": "两侧砖屋把视线引向中间空地，草木和裸露地面填满屋前距离。",
+              "note": "低矮砖屋分列画面两边，窗门、屋瓦和墙面留下不同的使用痕迹。中间没有明确道路，杂草与空地把近处旧屋和远处房屋连接起来。",
+              "shape": "wide",
+              "position": "50% 52%"
+            },
+            {
+              "id": "02",
+              "src": "photos/xiangjian-hechu/000010.jpg",
+              "alt": "一条窄巷从旧屋和砖墙之间向远处延伸，电线横跨上方",
+              "title": "巷子向前",
+              "scene": "村落街巷",
+              "summary": "窄巷穿过瓦顶、砖墙和多层房屋，沿坡度缓慢伸向画面深处。",
+              "note": "巷道宽度随着距离逐渐收窄，两侧房屋的高度和材料并不一致。屋顶、电线与路面都朝向远处汇合，让日常通行的路径成为画面的中心。",
+              "shape": "landscape",
+              "position": "50% 50%"
+            },
+            {
+              "id": "03",
+              "src": "photos/xiangjian-hechu/000011.jpg",
+              "alt": "一段带门洞的砖墙独立留在空地上，后方是不同高度的房屋",
+              "title": "留下的门",
+              "scene": "村落一角",
+              "summary": "门洞仍然立在砖墙中，墙前后的空地与房屋形成几层相互错开的空间。",
+              "note": "这段砖墙没有完整围合出房间，门洞却保留着可以穿过的方向。墙后的旧砖、植物和较新的楼房同时出现，让一处普通空地呈现出不同阶段的建造痕迹。",
+              "shape": "full",
+              "position": "50% 50%"
+            },
+            {
+              "id": "04",
+              "src": "photos/xiangjian-hechu/000012.jpg",
+              "alt": "砖屋门前摆放着椅子、容器、衣物和日常用品",
+              "title": "屋前一角",
+              "scene": "房屋外部",
+              "summary": "屋檐下的家具、容器与衣物占据门前，日常使用把空间分成细小区域。",
+              "note": "墙面、屋檐和临时遮挡构成简单的边界，椅子、桶和挂着的物品则说明这里被反复使用。画面没有整理过的秩序，却保留了房屋与生活直接相连的状态。",
+              "shape": "wide",
+              "position": "50% 52%"
+            },
+            {
+              "id": "05",
+              "src": "photos/xiangjian-hechu/000014.jpg",
+              "alt": "一人提着物品沿乡间窄路向前走，路边草木延伸到山脚",
+              "title": "沿小路走",
+              "scene": "乡间小路",
+              "summary": "人物沿弯曲窄路走向远处，路旁草木和山体把路径包围起来。",
+              "note": "近处人物背对镜头，手中提着物品，前方还有两个人沿同一条路行走。小路穿过杂草、菜地和围墙，人的移动让这段乡间距离有了清楚的方向。",
+              "shape": "portrait",
+              "position": "50% 50%"
+            },
+            {
+              "id": "06",
+              "src": "photos/xiangjian-hechu/000015.jpg",
+              "alt": "田地之间的水泥小路上有人骑车经过，远处排列着村屋和树木",
+              "title": "田边骑行",
+              "scene": "田间道路",
+              "summary": "小路从田地间弯向村屋，骑车的人与远处行人依次出现在路径上。",
+              "note": "水泥路把前景田地、路上的人物和后方村屋连接在一起。骑车的人靠近镜头，远处还有人沿路前行；屋顶、田埂与山边共同构成了一段仍在使用的日常路线。",
+              "shape": "landscape",
+              "position": "50% 54%"
+            },
+            {
+              "id": "07",
+              "src": "photos/xiangjian-hechu/000016.jpg",
+              "alt": "收整后的田地向远处铺开，山脚下分布着几排房屋",
+              "title": "田垄之外",
+              "scene": "乡间田地",
+              "summary": "田垄的线条横向铺开，低山、树木和房屋停在更远的位置。",
+              "note": "前景土地留下翻整后的纹理，几条田垄把视线带向山脚。房屋在画面中占比很小，开阔土地因此成为这张照片最主要的尺度。",
+              "shape": "full",
+              "position": "50% 50%"
+            },
+            {
+              "id": "08",
+              "src": "photos/xiangjian-hechu/000017.jpg",
+              "alt": "一人骑着小型滑板车从村屋门前经过，墙边停着一台农用机械",
+              "title": "滑过屋前",
+              "scene": "村落屋前",
+              "summary": "一人骑着小型滑板车经过屋前，旧墙、窗栏和农用机械依次排在身后。",
+              "note": "人物从画面左下方骑着小型滑板车经过，身后的房屋保留着旧墙面、窗栏和门口对联。墙边停着一台带锅具的农用机械，人的移动与屋前静止的物件形成清楚对比。",
+              "shape": "wide",
+              "position": "48% 55%"
+            },
+            {
+              "id": "09",
+              "src": "photos/xiangjian-hechu/000019.jpg",
+              "alt": "山体前方分布着低矮建筑和一座带雨棚的房屋，街面有人骑车经过",
+              "title": "山前街面",
+              "scene": "乡间街面",
+              "summary": "低矮建筑沿街展开，屋顶雨棚和后方山体形成两种不同轮廓。",
+              "note": "建筑正面朝向开阔街面，山体从屋顶后方升起。经过的车辆与路边阴影让空间保持日常状态，建筑和自然背景没有被刻意分开。",
+              "shape": "landscape",
+              "position": "50% 48%"
+            },
+            {
+              "id": "cover",
+              "src": "photos/xiangjian-hechu/cover.jpg",
+              "alt": "一人从瓦顶房屋和路边树木前走过，远处可见田地和蕉树",
+              "title": "走过屋前",
+              "scene": "村落道路",
+              "summary": "人物横穿屋前道路，瓦顶、树木和田地在身后分成近远几层。",
+              "note": "人物的红色上衣落在屋墙与树影之间，行走方向与横向道路一致。房屋门前的长椅、树木周围的竹架以及远处田地，让道路同时连接居住与耕作空间。",
+              "shape": "wide",
+              "position": "50% 52%"
+            },
+            {
+              "id": "11",
+              "src": "photos/xiangjian-hechu/000024.jpg",
+              "alt": "两侧墙面夹着一条通向亮处的窄巷，远处可见较新的多层房屋",
+              "title": "巷口之外",
+              "scene": "村落街巷",
+              "summary": "阴影里的巷道通向亮处，旧墙之外出现了颜色和高度不同的新房屋。",
+              "note": "近处墙面和密集电线压低了巷口，远处的天空与多层房屋则显得明亮。不同建筑材料在短短一段视线里并置，变化不需要额外说明就已经可见。",
+              "shape": "full",
+              "position": "50% 50%"
+            },
+            {
+              "id": "12",
+              "src": "photos/xiangjian-hechu/000025.jpg",
+              "alt": "店铺门边竖放着成卷材料，一名骑车的人从车辆和街面之间经过",
+              "title": "卷材之间",
+              "scene": "乡间街面",
+              "summary": "成卷材料占据画面前景，车辆、店面和经过的人被分隔在不同缝隙里。",
+              "note": "竖起的卷材遮挡了大部分街景，只留下几处可以向外观看的空隙。骑车的人恰好经过中央，前景物品、路边车辆和砖墙店面共同组成一处正在使用的街边空间。",
+              "shape": "landscape",
+              "position": "50% 50%"
+            },
+            {
+              "id": "13",
+              "src": "photos/xiangjian-hechu/000026.jpg",
+              "alt": "旧楼和商铺之间的巷口通向蓝色棚屋，远处露出较高的新楼",
+              "title": "巷口新旧",
+              "scene": "街巷出口",
+              "summary": "旧墙、电线、蓝色棚屋和远处高楼依次出现，巷口连接着不同尺度的空间。",
+              "note": "近处旧楼表面留有使用痕迹，电线密集横过视线；巷子深处出现蓝色棚屋和更远的高层建筑。骑车的人从中间经过，让这些不同年代感的空间仍保持在同一条日常路线里。",
+              "shape": "full",
+              "position": "50% 50%"
+            },
+            {
+              "id": "14",
+              "src": "photos/xiangjian-hechu/000028.jpg",
+              "alt": "临街旧屋前停着车辆和叉车，一人从树影与屋檐下经过",
+              "title": "屋前经过",
+              "scene": "临街旧屋",
+              "summary": "老屋、树木、车辆和路边设施挤在同一立面前，人物从中间穿过。",
+              "note": "枝条与电线覆盖在旧屋外墙前，叉车、汽车和垃圾桶占据道路边缘。人物经过时，房屋仍像居住空间，也同时容纳了车辆和日常作业留下的物件。",
+              "shape": "landscape",
+              "position": "50% 50%"
+            },
+            {
+              "id": "15",
+              "src": "photos/xiangjian-hechu/000029.jpg",
+              "alt": "砖墙和瓷砖房屋前搭着棚架，一辆汽车停在绿色围网后方",
+              "title": "墙边棚架",
+              "scene": "村落街边",
+              "summary": "棚架、围网和车辆叠在房屋前方，墙面材料显示出多次增建的痕迹。",
+              "note": "砖墙、瓷砖外墙与后方旧屋并排出现，棚架上的枯藤在它们之间交错。绿色围网围住车辆和屋前空地，让私人使用与临街空间保持着模糊边界。",
+              "shape": "wide",
+              "position": "50% 50%"
+            }
+          ],
+          "coverOrientation": "landscape",
+          "homeCoverPosition": "50% 50%",
+          "heroCoverPosition": "50% 50%",
+          "detailCoverPosition": "50% 50%",
+          "coverPosition": "50% 50%"
+        },
+        {
+          "id": "animals",
+          "number": "07",
+          "title": "动物摄影",
+          "englishTitle": "Animal Photography",
+          "category": "动物摄影",
+          "location": "日常环境",
+          "status": "持续整理中",
+          "coverWorkId": "cover",
+          "coverShape": "portrait",
+          "coverOrientation": "portrait",
+          "homeCoverPosition": "50% 46%",
+          "heroCoverPosition": "50% 46%",
+          "detailCoverPosition": "50% 46%",
+          "coverPosition": "50% 46%",
+          "description": "记录日常环境中遇见的动物，关注它们的姿态、视线，以及身体与周围空间之间的距离。",
+          "note": "目前栏目里是一只草地上的猫和一只树下的狗。照片不替动物补写情绪，只从耳朵、目光、坐姿和光线这些可见细节出发，保留它们短暂面对镜头的样子。",
+          "works": [
+            {
+              "id": "cover",
+              "src": "photos/animals/cover.jpg",
+              "alt": "一只浅色猫坐在草地上抬头看向镜头，身后背景被虚化",
+              "title": "草地上的猫",
+              "scene": "草地",
+              "summary": "猫端坐在草地中央，抬起的前爪、竖直耳朵和正面视线成为画面重点。",
+              "note": "浅色猫坐在被阳光照亮的草地上，身体保持端正，一只前爪微微抬起。背景被压成柔和的绿色，视线因此集中到它的眼睛、耳朵和身体轮廓上。",
+              "shape": "portrait",
+              "position": "50% 46%"
+            },
+            {
+              "id": "01",
+              "src": "photos/animals/000_5033-nr.jpg",
+              "alt": "一只棕白色狗坐在树下草地上，抬头望向画面外的亮处",
+              "title": "树下的狗",
+              "scene": "树下草地",
+              "summary": "狗坐在斑驳树影里抬头看向一侧，暖色阳光落在脸部和胸前。",
+              "note": "树影覆盖了大部分草地，狗安静坐在亮处边缘，头部向上转向画面外。张开的嘴、竖起的耳朵和胸前白毛被阳光照亮，身体姿态比环境更清楚。",
+              "shape": "portrait",
+              "position": "50% 48%"
+            }
+          ]
+        },
+        {
+          "id": "abstract",
+          "number": "08",
+          "title": "抽象摄影",
+          "englishTitle": "Abstract Photography",
+          "category": "抽象摄影",
+          "location": "日常现场",
+          "status": "持续整理中",
+          "coverWorkId": "cover",
+          "coverShape": "portrait",
+          "coverOrientation": "portrait",
+          "homeCoverPosition": "50% 38%",
+          "heroCoverPosition": "50% 38%",
+          "detailCoverPosition": "50% 38%",
+          "coverPosition": "50% 38%",
+          "description": "从日常场景中寻找形状、遮挡和尺度错位，让熟悉的物体在画面里形成新的关系。",
+          "note": "这个栏目暂时包含两种不同的观看方式：一张把灯杆、篮架和天空压成黑白线条，另一张让平板屏幕上的婴儿面孔覆盖持屏者的脸。它们都来自真实场景，只通过取景和颜色关系改变观看顺序。",
+          "works": [
+            {
+              "id": "cover",
+              "src": "photos/abstract/cover.jpg",
+              "alt": "一人双手举着平板遮住自己的脸，屏幕上显示一张婴儿面孔",
+              "title": "屏幕里的脸",
+              "scene": "日常现场",
+              "summary": "平板上的彩色婴儿面孔覆盖持屏者的脸，黑白身体与屏幕形成重叠。",
+              "note": "持屏者正面对镜头，双手把平板举在面前，自己的脸被屏幕完全遮住。屏幕里的彩色面孔与周围黑白画面形成直接对比，也让两张脸在同一位置发生替换。",
+              "shape": "portrait",
+              "position": "50% 38%"
+            },
+            {
+              "id": "01",
+              "src": "photos/abstract/dscf7657.jpg",
+              "alt": "黑白天空下排列着许多高低不同的灯杆和篮球架",
+              "title": "灯杆与篮架",
+              "scene": "户外球场",
+              "summary": "灯杆与篮球架在灰色天空前交错，高低和远近组成一组密集线条。",
+              "note": "画面去掉了球场上的活动，只留下灯杆、篮架和少量树影。竖直线、方形篮板与远近不同的高度重复出现，让熟悉的运动场设施变成一组简单的几何关系。",
+              "shape": "wide",
+              "position": "50% 48%"
+            }
+          ]
+        }
+      ];
+
+      const defaultTitle = "LilD Photos｜街上见";
+      const homeView = document.getElementById("home-view");
+      const seriesView = document.getElementById("series-view");
+      const seriesGrid = document.getElementById("series-grid");
+      const heroCarousel = document.getElementById("home");
+      const heroImageFrame = document.getElementById("hero-image-frame");
+      const heroImage = document.getElementById("hero-carousel-image");
+      const heroImageLink = document.getElementById("hero-image-link");
+      const heroNumber = document.getElementById("hero-series-number");
+      const heroTitle = document.getElementById("hero-title");
+      const heroEnglish = document.getElementById("hero-series-english");
+      const heroDescription = document.getElementById("hero-series-description");
+      const heroCount = document.getElementById("hero-series-count");
+      const heroSeriesLink = document.getElementById("hero-series-link");
+      const heroCaption = document.getElementById("hero-caption");
+      const carouselDots = document.getElementById("carousel-dots");
+      const seriesWorksGrid = document.getElementById("series-works-grid");
+      const seriesCoverButton = document.getElementById("series-cover-button");
+      const seriesCoverFigure = seriesCoverButton.closest("figure");
+      const lightbox = document.getElementById("lightbox");
+      const closeButton = document.getElementById("close-lightbox");
+      const previousWorkButton = document.getElementById("previous-work");
+      const nextWorkButton = document.getElementById("next-work");
+      const lightboxPosition = document.getElementById("lightbox-position");
+      const lightboxImage = document.getElementById("lightbox-img");
+      const lightboxKicker = document.getElementById("lightbox-kicker");
+      const lightboxTitle = document.getElementById("lightbox-title");
+      const lightboxSeries = document.getElementById("lightbox-series");
+      const lightboxMeta = document.getElementById("lightbox-meta");
+      const lightboxSummary = document.getElementById("lightbox-summary");
+      const lightboxNote = document.getElementById("lightbox-note");
+      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const carouselSeries = seriesList.filter((series) => getCoverWork(series));
+      const carouselInterval = 5000;
+      let activeSeries = null;
+      let lightboxSeriesData = null;
+      let activeWorkIndex = -1;
+      let lastFocusedElement = null;
+      let activeCarouselIndex = 0;
+      let carouselTimer = null;
+      let carouselHoverPaused = false;
+      let carouselFocusPaused = false;
+
+      function getCoverWork(series) {
+        if (!series.coverWorkId) return null;
+        return series.works.find((work) => work.id === series.coverWorkId) || null;
+      }
+
+      function getCoverOrientation(series, coverWork = getCoverWork(series)) {
+        if (series.coverOrientation) return series.coverOrientation;
+        if (coverWork?.shape === "portrait") return "portrait";
+        if (coverWork?.shape === "square") return "square";
+        return "landscape";
+      }
+
+      function getCoverPosition(series, context, coverWork = getCoverWork(series)) {
+        const key = `${context}CoverPosition`;
+        return series[key] || series.coverPosition || coverWork?.position || "50% 50%";
+      }
+
+      function createSeriesCard(series) {
+        const card = document.createElement("a");
+        const coverWork = getCoverWork(series);
+        const coverOrientation = getCoverOrientation(series, coverWork);
+        card.className = `series-card is-${coverOrientation}`;
+        card.href = `#series-${series.id}`;
+        card.setAttribute("aria-label", `进入摄影栏目《${series.title}》，共 ${series.works.length} 张照片`);
+
+        const cover = document.createElement("div");
+        cover.className = "series-card-cover";
+        if (coverWork) {
+          const image = document.createElement("img");
+          image.src = coverWork.src;
+          image.alt = coverWork.alt;
+          image.loading = "lazy";
+          image.decoding = "async";
+          image.style.objectPosition = getCoverPosition(series, "home", coverWork);
+          cover.append(image);
+        } else {
+          cover.classList.add("no-cover");
+          const placeholder = document.createElement("span");
+          placeholder.className = "series-cover-placeholder";
+          placeholder.innerHTML = `<strong>${series.title}</strong><span>封面待补充 / COVER PENDING</span>`;
+          cover.append(placeholder);
+        }
+        const index = document.createElement("span");
+        index.className = "series-card-index";
+        index.textContent = series.number;
+        cover.append(index);
+
+        const copy = document.createElement("div");
+        copy.className = "series-card-copy";
+        const heading = document.createElement("div");
+        heading.className = "series-card-heading";
+        const titleWrap = document.createElement("div");
+        const title = document.createElement("h3");
+        title.textContent = series.title;
+        const english = document.createElement("p");
+        english.className = "series-card-english";
+        english.textContent = series.englishTitle;
+        titleWrap.append(title, english);
+        const count = document.createElement("p");
+        count.className = "series-count";
+        count.textContent = `${String(series.works.length).padStart(2, "0")} PHOTOGRAPHS`;
+        heading.append(titleWrap, count);
+
+        const description = document.createElement("p");
+        description.className = "series-card-description";
+        description.textContent = series.description;
+        const enter = document.createElement("span");
+        enter.className = "series-enter";
+        enter.innerHTML = '<span>进入栏目</span><span aria-hidden="true">⟶</span>';
+        copy.append(heading, description, enter);
+        card.append(cover, copy);
+        return card;
+      }
+
+      function renderSeriesIndex() {
+        seriesGrid.replaceChildren(...seriesList.map(createSeriesCard));
+      }
+
+      function stopCarouselTimer() {
+        if (carouselTimer) {
+          window.clearTimeout(carouselTimer);
+          carouselTimer = null;
+        }
+      }
+
+      function carouselCanPlay() {
+        return (
+          carouselSeries.length > 1 &&
+          !reducedMotionQuery.matches &&
+          !document.hidden &&
+          !carouselHoverPaused &&
+          !carouselFocusPaused
+        );
+      }
+
+      function scheduleCarousel() {
+        stopCarouselTimer();
+        if (!carouselCanPlay()) return;
+        carouselTimer = window.setTimeout(() => {
+          showHeroSeries(activeCarouselIndex + 1, { animate: true, resetTimer: true });
+        }, carouselInterval);
+      }
+
+      function applyHeroSeries(index) {
+        if (!carouselSeries.length) return;
+        activeCarouselIndex = (index + carouselSeries.length) % carouselSeries.length;
+        const series = carouselSeries[activeCarouselIndex];
+        const coverWork = getCoverWork(series);
+        const coverOrientation = getCoverOrientation(series, coverWork);
+        const target = `#series-${series.id}`;
+        heroImage.src = coverWork.src;
+        heroImage.alt = coverWork.alt;
+        heroImage.style.objectPosition = getCoverPosition(series, "hero", coverWork);
+        heroCarousel.classList.remove("is-landscape", "is-portrait", "is-square");
+        heroCarousel.classList.add(`is-${coverOrientation}`);
+        heroImageLink.href = target;
+        heroImageLink.setAttribute("aria-label", `进入摄影栏目《${series.title}》`);
+        heroNumber.textContent = `SERIES ${series.number} / PERSONAL ARCHIVE`;
+        heroTitle.textContent = series.title;
+        heroEnglish.textContent = series.englishTitle;
+        heroDescription.textContent = series.description;
+        heroCount.textContent = `${String(series.works.length).padStart(2, "0")} PHOTOGRAPHS`;
+        heroSeriesLink.href = target;
+        heroCaption.textContent = `${series.title} · ${String(series.works.length).padStart(2, "0")} 张照片`;
+        Array.from(carouselDots.children).forEach((dot, dotIndex) => {
+          dot.setAttribute("aria-current", dotIndex === activeCarouselIndex ? "true" : "false");
+        });
+
+        const nextSeries = carouselSeries[(activeCarouselIndex + 1) % carouselSeries.length];
+        const nextCover = getCoverWork(nextSeries);
+        if (nextCover) {
+          const preload = new Image();
+          preload.src = nextCover.src;
+        }
+      }
+
+      function showHeroSeries(index, options = {}) {
+        const { animate = true, resetTimer = true } = options;
+        stopCarouselTimer();
+        const shouldAnimate = animate && !reducedMotionQuery.matches;
+        if (shouldAnimate) {
+          heroImageFrame.classList.add("is-changing");
+          window.setTimeout(() => {
+            applyHeroSeries(index);
+            requestAnimationFrame(() => heroImageFrame.classList.remove("is-changing"));
+          }, 160);
+        } else {
+          applyHeroSeries(index);
+          heroImageFrame.classList.remove("is-changing");
+        }
+        if (resetTimer) scheduleCarousel();
+      }
+
+      function renderHeroCarousel() {
+        const dots = carouselSeries.map((series, index) => {
+          const button = document.createElement("button");
+          button.className = "carousel-dot";
+          button.type = "button";
+          button.setAttribute("aria-label", `显示第 ${index + 1} 张栏目封面：《${series.title}》`);
+          button.addEventListener("click", () => showHeroSeries(index, { animate: true, resetTimer: true }));
+          return button;
+        });
+        carouselDots.replaceChildren(...dots);
+        applyHeroSeries(0);
+        scheduleCarousel();
+      }
+
+      function createWorkCard(series, work) {
+        const allowedShapes = ["wide", "portrait", "landscape", "full"];
+        const shape = allowedShapes.includes(work.shape) ? work.shape : "wide";
+        const article = document.createElement("article");
+        article.className = `work-card ${shape}`;
+
+        const button = document.createElement("button");
+        button.className = "image-button";
+        button.type = "button";
+        button.dataset.seriesId = series.id;
+        button.dataset.workId = work.id;
+        button.setAttribute("aria-label", `查看《${work.title}》及文字解读`);
+
+        const imageWrap = document.createElement("span");
+        imageWrap.className = "image-wrap";
+        const image = document.createElement("img");
+        image.src = work.src;
+        image.alt = work.alt;
+        image.loading = "lazy";
+        image.decoding = "async";
+        image.style.objectPosition = work.position || "50% 50%";
+        const viewLabel = document.createElement("span");
+        viewLabel.className = "view-label";
+        viewLabel.textContent = "查看解读 ⟶";
+        imageWrap.append(image, viewLabel);
+        button.append(imageWrap);
+
+        const caption = document.createElement("div");
+        caption.className = "work-caption";
+        const captionTitle = document.createElement("p");
+        captionTitle.className = "work-caption-title";
+        const number = document.createElement("span");
+        number.textContent = work.id;
+        captionTitle.append(number, document.createTextNode(` ${work.title}`));
+        const details = document.createElement("div");
+        details.className = "work-caption-details";
+        const scene = document.createElement("small");
+        scene.textContent = work.scene;
+        const summary = document.createElement("p");
+        summary.className = "work-caption-summary";
+        summary.textContent = work.summary;
+        details.append(scene, summary);
+        caption.append(captionTitle, details);
+        article.append(button, caption);
+        return article;
+      }
+
+      function renderSeriesDetail(series) {
+        activeSeries = series;
+        const coverWork = getCoverWork(series);
+        const galleryWorks = coverWork
+          ? series.works.filter((work) => work.id !== coverWork.id)
+          : series.works;
+        document.getElementById("series-number").textContent = `SERIES ${series.number}`;
+        document.getElementById("series-title").textContent = series.title;
+        document.getElementById("series-english-title").textContent = series.englishTitle;
+        document.getElementById("series-description").textContent = series.description;
+        document.getElementById("series-category").textContent = series.category;
+        document.getElementById("series-location").textContent = series.location;
+        document.getElementById("series-status").textContent = series.status;
+        document.getElementById("series-count").textContent = `${series.works.length} 张照片`;
+        document.getElementById("series-note").textContent = series.note;
+        document.getElementById("series-work-total").textContent =
+          `${String(series.works.length).padStart(2, "0")} PHOTOGRAPHS`;
+
+        const cover = document.getElementById("series-cover");
+        seriesCoverFigure.hidden = !coverWork;
+        if (coverWork) {
+          const coverOrientation = getCoverOrientation(series, coverWork);
+          cover.src = coverWork.src;
+          cover.alt = coverWork.alt;
+          cover.style.objectPosition = getCoverPosition(series, "detail", coverWork);
+          seriesCoverFigure.classList.remove("is-landscape", "is-portrait", "is-square");
+          seriesCoverFigure.classList.add(`is-${coverOrientation}`);
+          seriesCoverButton.dataset.seriesId = series.id;
+          seriesCoverButton.dataset.workId = coverWork.id;
+          seriesCoverButton.setAttribute("aria-label", `查看封面作品《${coverWork.title}》及文字解读`);
+        } else {
+          seriesCoverFigure.classList.remove("is-landscape", "is-portrait", "is-square");
+          cover.removeAttribute("src");
+          cover.alt = "";
+          delete seriesCoverButton.dataset.seriesId;
+          delete seriesCoverButton.dataset.workId;
+        }
+        seriesWorksGrid.replaceChildren(
+          ...galleryWorks.map((work) => createWorkCard(series, work))
+        );
+      }
+
+      function showHome(targetId) {
+        activeSeries = null;
+        seriesView.hidden = true;
+        homeView.hidden = false;
+        document.title = defaultTitle;
+
+        requestAnimationFrame(() => {
+          const target = document.getElementById(targetId || "home");
+          if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
+        });
+      }
+
+      function showSeries(series) {
+        renderSeriesDetail(series);
+        homeView.hidden = true;
+        seriesView.hidden = false;
+        document.title = `${series.title}｜LilD Photos`;
+        window.scrollTo(0, 0);
+      }
+
+      function routeFromHash() {
+        closeLightbox();
+        const hash = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+        if (hash.startsWith("series-")) {
+          const seriesId = hash.slice("series-".length);
+          const series = seriesList.find((item) => item.id === seriesId);
+          if (series) {
+            showSeries(series);
+            return;
+          }
+        }
+
+        const homeTargets = ["home", "works", "notes", "about"];
+        showHome(homeTargets.includes(hash) ? hash : "home");
+      }
+
+      function renderLightboxWork(series, index) {
+        activeWorkIndex = (index + series.works.length) % series.works.length;
+        const work = series.works[activeWorkIndex];
+        lightboxImage.src = work.src;
+        lightboxImage.alt = work.alt;
+        lightboxKicker.textContent = `IMAGE ${work.id} / PHOTOGRAPH`;
+        lightboxTitle.textContent = work.title;
+        lightboxSeries.textContent = `所属栏目：${series.title}`;
+        lightboxMeta.textContent = work.scene;
+        lightboxSummary.textContent = work.summary;
+        lightboxNote.textContent = work.note;
+        lightboxPosition.textContent = `${String(activeWorkIndex + 1).padStart(2, "0")} / ${String(series.works.length).padStart(2, "0")}`;
+      }
+
+      function openLightbox(series, work, trigger) {
+        lastFocusedElement = trigger;
+        lightboxSeriesData = series;
+        renderLightboxWork(series, series.works.findIndex((item) => item.id === work.id));
+        lightbox.hidden = false;
+        document.body.classList.add("is-modal-open");
+        closeButton.focus();
+      }
+
+      function moveLightbox(direction) {
+        if (!lightboxSeriesData || lightbox.hidden) return;
+        renderLightboxWork(lightboxSeriesData, activeWorkIndex + direction);
+      }
+
+      function closeLightbox() {
+        if (lightbox.hidden) return;
+        lightbox.hidden = true;
+        document.body.classList.remove("is-modal-open");
+        lightboxSeriesData = null;
+        activeWorkIndex = -1;
+        if (lastFocusedElement && document.contains(lastFocusedElement)) {
+          lastFocusedElement.focus();
+        }
+      }
+
+      seriesWorksGrid.addEventListener("click", (event) => {
+        const trigger = event.target.closest("[data-work-id]");
+        if (!trigger) return;
+        const series = seriesList.find((item) => item.id === trigger.dataset.seriesId);
+        const work = series?.works.find((item) => item.id === trigger.dataset.workId);
+        if (series && work) openLightbox(series, work, trigger);
+      });
+
+      seriesCoverButton.addEventListener("click", () => {
+        const series = seriesList.find((item) => item.id === seriesCoverButton.dataset.seriesId);
+        const work = series?.works.find((item) => item.id === seriesCoverButton.dataset.workId);
+        if (series && work) openLightbox(series, work, seriesCoverButton);
+      });
+
+      closeButton.addEventListener("click", closeLightbox);
+      previousWorkButton.addEventListener("click", () => moveLightbox(-1));
+      nextWorkButton.addEventListener("click", () => moveLightbox(1));
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (lightbox.hidden) return;
+        if (event.key === "Escape") {
+          closeLightbox();
+          return;
+        }
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          moveLightbox(-1);
+          return;
+        }
+
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          moveLightbox(1);
+          return;
+        }
+
+        if (event.key === "Tab") {
+          const focusable = Array.from(
+            lightbox.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')
+          ).filter((element) => !element.hasAttribute("disabled"));
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      heroCarousel.addEventListener("mouseenter", () => {
+        carouselHoverPaused = true;
+        stopCarouselTimer();
+      });
+
+      heroCarousel.addEventListener("mouseleave", () => {
+        carouselHoverPaused = false;
+        scheduleCarousel();
+      });
+
+      heroCarousel.addEventListener("focusin", () => {
+        carouselFocusPaused = true;
+        stopCarouselTimer();
+      });
+
+      heroCarousel.addEventListener("focusout", (event) => {
+        if (heroCarousel.contains(event.relatedTarget)) return;
+        carouselFocusPaused = false;
+        scheduleCarousel();
+      });
+
+      heroCarousel.addEventListener("keydown", (event) => {
+        if (!lightbox.hidden) return;
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          showHeroSeries(activeCarouselIndex - 1, { animate: true, resetTimer: true });
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          showHeroSeries(activeCarouselIndex + 1, { animate: true, resetTimer: true });
+        }
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stopCarouselTimer();
+        else scheduleCarousel();
+      });
+
+      reducedMotionQuery.addEventListener?.("change", () => {
+        if (reducedMotionQuery.matches) stopCarouselTimer();
+        else scheduleCarousel();
+      });
+
+      renderSeriesIndex();
+      renderHeroCarousel();
+      window.addEventListener("hashchange", routeFromHash);
+      routeFromHash();
+    </script>
+  </body>
+</html>

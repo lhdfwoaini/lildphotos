@@ -325,6 +325,7 @@
 
       .hero-media-controls {
         width: 100%;
+        min-width: 0;
         min-height: 31px;
         margin-top: 14px;
         display: flex;
@@ -336,12 +337,22 @@
       .carousel-dots {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: clamp(6px, 0.7vw, 10px);
+        min-width: 0;
+        max-width: 100%;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: none;
         padding: 0;
         background: transparent;
       }
 
+      .carousel-dots::-webkit-scrollbar {
+        display: none;
+      }
+
       .carousel-dot {
+        flex: 0 0 auto;
         width: 9px;
         height: 9px;
         border: 1px solid rgba(242, 235, 221, 0.72);
@@ -2432,6 +2443,658 @@
           ]
         }
       ];
+
+      /*
+       * 2026-07-12 内容同步：保留上方已经核对过的旧作品数据，
+       * 在这里集中登记新增作品和栏目，便于以后继续按文件夹增量维护。
+       */
+      const seriesById = Object.fromEntries(seriesList.map((series) => [series.id, series]));
+
+      Object.assign(seriesById.landscape, {
+        coverWorkId: "cover",
+        coverShape: "wide",
+        coverOrientation: "landscape",
+        description: "记录旅途中遇见的天色、水面、城市轮廓和开阔空间，保留自然光线改变环境的具体时刻。",
+        note: "这个栏目从水岸、晚霞和远处的城市轮廓展开。照片只整理画面中能够确认的天气、空间和人物尺度，不为尚未确认的地点补写故事。",
+        works: [
+          {
+            id: "cover",
+            src: "photos/landscape/cover.png",
+            alt: "晚霞天空下，一座细长高塔从桥面后方升起，桥边可见一名行人",
+            title: "晚霞高塔",
+            scene: "城市天际线 · 黄昏",
+            summary: "高塔以深色轮廓立在晚霞前，桥面上的行人提供了清楚的尺度。",
+            note: "橙紫色天空占据大部分画面，高塔从低处的桥面向上延伸。桥边的人物很小，塔身和人物之间的高度差成为画面最直接的关系。",
+            shape: "wide",
+            position: "50% 48%"
+          },
+          {
+            id: "01",
+            src: "photos/landscape/2.jpg",
+            alt: "黄昏时的水道两侧排列着树木和建筑，粉紫色晚霞映在平静水面上",
+            title: "水面晚霞",
+            scene: "水边 · 黄昏",
+            summary: "晚霞沿水道和倒影向远处延伸，两侧树影把画面收拢在中央。",
+            note: "天色从紫蓝过渡到橙红，平静水面把云层和岸边灯光完整地接住。两侧树木形成深色边框，中间的水道把视线带向远处。",
+            shape: "wide",
+            position: "50% 48%"
+          },
+          {
+            id: "02",
+            src: "photos/landscape/tower-at-dusk.jpg",
+            alt: "橙色暮光中，一座高塔立在桥面后方，一名行人从桥边经过",
+            title: "塔下经过",
+            scene: "城市一角 · 暮色",
+            summary: "暮色压低了桥面和城市轮廓，行人与高塔分别停在画面下方和中央。",
+            note: "画面采用竖幅，高塔被放在接近中央的位置。桥面只留下窄窄一条，人物从塔下经过，让暮色中的建筑尺度变得具体。",
+            shape: "portrait",
+            position: "50% 50%"
+          }
+        ]
+      });
+
+      seriesById.architecture.works.push(
+        {
+          id: "07",
+          src: "photos/architecture/atrium-lines.jpg",
+          alt: "高层建筑中庭从下方向上展开，玻璃顶棚和两侧走廊形成对称线条",
+          title: "中庭向上",
+          scene: "建筑内部",
+          summary: "两侧走廊沿中庭逐层升高，顶部玻璃把光线引入深处。",
+          note: "竖幅取景让中庭的高度成为画面中心。楼层、栏杆和顶棚反复排列，底部暖色灯光与上方天光标出空间的深浅。",
+          shape: "portrait",
+          position: "50% 50%"
+        },
+        {
+          id: "08",
+          src: "photos/architecture/spiral-stair.jpg",
+          alt: "几段白色螺旋楼梯在三角形建筑开口中上下交叠",
+          title: "旋梯交叠",
+          scene: "建筑内部",
+          summary: "白色螺旋楼梯在深色三角形开口中交叠，结构本身成为画面主体。",
+          note: "楼梯的弧线从不同楼层伸出，三角形边框把视线集中在中央。人物和周围建筑只占很小比例，主要留下结构的重复与转折。",
+          shape: "portrait",
+          position: "50% 50%"
+        },
+        {
+          id: "09",
+          src: "photos/architecture/round-courtyard.jpg",
+          alt: "圆形建筑中庭向上围合，中央天空中有一架飞机经过",
+          title: "圆庭上空",
+          scene: "建筑内部",
+          summary: "圆形中庭把天空收成一个亮口，经过的飞机落在开口中央。",
+          note: "建筑楼层沿圆周向上叠加，窗格和栏杆形成重复节奏。飞机从中央亮口经过，只占很小一部分，却让仰视方向更加明确。",
+          shape: "portrait",
+          position: "50% 44%"
+        },
+        {
+          id: "10",
+          src: "photos/architecture/rectangular-sky.jpg",
+          alt: "玻璃与金属建筑围出长方形天空，一架飞机从开口中经过",
+          title: "方框里的飞机",
+          scene: "建筑内部",
+          summary: "密集立面围成长方形天井，飞机从灰白天空中穿过。",
+          note: "仰视角度把四周建筑压成规整边框，玻璃网格和反射填满画面边缘。中央天空留得很少，飞机恰好经过，改变了原本静止的几何关系。",
+          shape: "portrait",
+          position: "50% 50%"
+        },
+        {
+          id: "11",
+          src: "photos/architecture/facade-grid.jpg",
+          alt: "建筑立面上重复排列着阳台、窗口和空调外机",
+          title: "立面方格",
+          scene: "建筑立面",
+          summary: "阳台和窗口铺满画面，深浅不同的方格形成密集重复。",
+          note: "正面取景压平了建筑深度，阳台栏杆、窗洞和外机成为连续图案。少量开合不同的窗户让规则表面留下细小变化。",
+          shape: "portrait",
+          position: "50% 50%"
+        }
+      );
+
+      seriesById.documentary.works.push(
+        {
+          id: "04",
+          src: "photos/documentary/through-the-rails.jpg",
+          alt: "从室内栏杆间望出去，一名穿绿色上衣的人沿草地边缘向前走",
+          title: "栏杆之外",
+          scene: "日常现场",
+          summary: "深色栏杆切分近处视线，人物从亮处的草地边缘经过。",
+          note: "镜头留在较暗的室内，栏杆形成几道竖直遮挡。外面的人背对镜头向前走，绿色上衣与草地相近，身体被框在两根栏杆之间。",
+          shape: "landscape",
+          position: "50% 50%"
+        },
+        {
+          id: "05",
+          src: "photos/documentary/street-umbrella.jpg",
+          alt: "路边大伞下堆放着手推车、容器和长杆，一人站在物品之间",
+          title: "伞下摊位",
+          scene: "城市街头 · 路边",
+          summary: "大伞、手推车和成组容器占据路边，一人站在临时摆放的物品之间。",
+          note: "伞面遮住上方光线，长杆、推车和容器从画面左侧向外展开。人物位于中间，周围物品说明这段路边空间正在被具体使用。",
+          shape: "wide",
+          position: "48% 52%"
+        },
+        {
+          id: "06",
+          src: "photos/documentary/corridor-seat.jpg",
+          alt: "建筑走廊里，一人坐在卷帘门前，墙面和地面向远处延伸",
+          title: "门前坐下",
+          scene: "建筑走廊",
+          summary: "一人坐在卷帘门前，空走廊和连续门面把人物留在画面一侧。",
+          note: "走廊地面占据大部分画面，卷帘门和墙面按同一方向延伸。坐着的人靠近门边，周围没有更多活动，空间的长度因此更加明显。",
+          shape: "landscape",
+          position: "58% 58%"
+        }
+      );
+
+      Object.assign(seriesById.animals, {
+        description: "记录日常环境中遇见的动物，关注羽毛、姿态、飞行和身体与周围空间之间的距离。",
+        note: "栏目里的动物来自不同环境。文字只描述照片中能够看见的姿态、颜色、视线与周围植物，不替动物补写情绪，也不推断拍摄地点。",
+        coverWorkId: "cover",
+        works: [
+          {
+            id: "cover",
+            src: "photos/animals/cover.jpg",
+            alt: "一只褐色猫头鹰正面看向镜头，羽毛纹理在深色背景前清晰可见",
+            title: "正面凝视",
+            scene: "自然环境",
+            summary: "猫头鹰正面停留，圆形眼睛和细密羽毛成为画面中心。",
+            note: "深色背景压低了周围信息，视线集中到头部和胸前羽毛。双眼朝向镜头，身体没有明显动作，照片保留的是轮廓与纹理。",
+            shape: "portrait",
+            position: "50% 42%"
+          },
+          seriesById.animals.works.find((work) => work.id === "01"),
+          {
+            id: "02",
+            src: "photos/animals/bee-on-flower.jpg",
+            alt: "一只蜜蜂停在橙红色花朵中央，背景被虚化成绿色",
+            title: "花心停落",
+            scene: "花丛",
+            summary: "蜜蜂停在花朵中央，橙红花瓣和透明翅膀在近距离中展开。",
+            note: "近距离取景把花瓣的层次和蜜蜂身体放大，背景只留下柔和绿色。画面主要记录昆虫停落时的大小关系与颜色对比。",
+            shape: "wide",
+            position: "52% 46%"
+          },
+          {
+            id: "03",
+            src: "photos/animals/white-bird-flight.jpg",
+            alt: "一只白色鸟张开双翼飞过深绿色背景，下方有一排红花",
+            title: "掠过花丛",
+            scene: "绿地上方",
+            summary: "白色鸟展开双翼从暗绿背景前飞过，红花压在画面下沿。",
+            note: "飞行中的身体被定格在横向移动里，白色羽翼与深色树林形成清楚对比。下方红花只占窄窄一条，让飞行高度更容易辨认。",
+            shape: "wide",
+            position: "62% 48%"
+          },
+          {
+            id: "04",
+            src: "photos/animals/yellow-parrot.jpg",
+            alt: "一只黄橙色鹦鹉停在枝头，身后是粉紫色花与绿色背景",
+            title: "枝头暖色",
+            scene: "树枝间",
+            summary: "黄橙色鹦鹉立在斜枝上，羽毛颜色从花丛背景中分离出来。",
+            note: "鹦鹉身体沿枝条保持竖直，头部转向一侧。背景花朵被虚化，只留下粉紫与绿色色块，衬出羽毛的暖色层次。",
+            shape: "portrait",
+            position: "50% 46%"
+          },
+          {
+            id: "05",
+            src: "photos/animals/pink-parrot.jpg",
+            alt: "一只粉灰色鹦鹉停在细枝上，头部朝向镜头一侧",
+            title: "粉羽立枝",
+            scene: "树枝间",
+            summary: "粉灰色鹦鹉停在枝条中央，弯曲树枝围住身体轮廓。",
+            note: "鸟的胸腹呈粉色，翅部和背部偏灰，细枝从身体两侧经过。浅景深让背景退开，羽毛颜色和抓握姿态更加清楚。",
+            shape: "portrait",
+            position: "50% 48%"
+          },
+          {
+            id: "06",
+            src: "photos/animals/cat.jpg",
+            alt: "一只浅色猫坐在草地上抬头看向镜头，身后背景被虚化",
+            title: "草地上的猫",
+            scene: "草地",
+            summary: "猫坐在草地中央，一只前爪微微抬起，正面视线落向镜头。",
+            note: "浅色猫坐在被阳光照亮的草地上，身体保持端正，一只前爪微微抬起。背景被压成柔和绿色，视线集中到眼睛、耳朵和身体轮廓。",
+            shape: "portrait",
+            position: "50% 46%"
+          }
+        ]
+      });
+
+      seriesById.abstract.works.push(
+        {
+          id: "02",
+          src: "photos/abstract/doorway-figures.jpg",
+          alt: "黑白空间中，多组深色门洞前有两个人以不同方向经过",
+          title: "门洞与人",
+          scene: "建筑内部",
+          summary: "连续门洞把白色墙面切开，两个人的动作落在不同开口之间。",
+          note: "正面取景让深色门洞成为一组重复矩形。近处人物伸展手臂，远处人物从另一道门前经过，两种动作打破了立面的整齐排列。",
+          shape: "wide",
+          position: "50% 52%"
+        },
+        {
+          id: "03",
+          src: "photos/abstract/stair-shadows.jpg",
+          alt: "从下方向上看，几个人的模糊身影出现在半透明台阶上",
+          title: "台阶上方",
+          scene: "建筑内部",
+          summary: "半透明台阶将人物压成深浅不同的轮廓，脚步沿竖幅画面向上排列。",
+          note: "镜头从楼梯下方向上看，台阶和栏杆形成密集横线。人物被材料遮挡，只留下身体轮廓和移动方向，熟悉的楼梯因此变成分层的图形。",
+          shape: "portrait",
+          position: "50% 50%"
+        }
+      );
+
+      const newSeries = [
+        {
+          id: "light-and-shadow",
+          title: "光与影",
+          englishTitle: "Light and Shadow",
+          category: "光影观察",
+          location: "日常现场",
+          status: "持续整理中",
+          coverWorkId: "cover",
+          coverShape: "portrait",
+          coverOrientation: "portrait",
+          homeCoverPosition: "50% 54%",
+          heroCoverPosition: "50% 54%",
+          detailCoverPosition: "50% 54%",
+          coverPosition: "50% 54%",
+          description: "关注建筑与街头空间中的明暗边界、投影和人物轮廓，记录光线改变普通场景的方式。",
+          note: "这些照片不把光线当作装饰，而是观察它如何切分墙面、通道和人物。文字只描述可见的明暗、轮廓与空间关系。",
+          works: [
+            {
+              id: "cover",
+              src: "photos/light-and-shadow/cover.jpg",
+              alt: "高墙和地面形成大面积明暗分区，一名行人从亮处经过",
+              title: "墙角行人",
+              scene: "建筑外部",
+              summary: "高墙把画面切成明暗两部分，行人落在狭窄亮区中。",
+              note: "墙体和地面形成几块清楚的几何形状，人物位于画面下方，尺度很小。光线没有照亮全部空间，只让行走路径短暂显现。",
+              shape: "portrait",
+              position: "50% 54%"
+            },
+            {
+              id: "01",
+              src: "photos/light-and-shadow/arch-passage.jpg",
+              alt: "拱形通道内一名行人以剪影经过，远处建筑和自行车停在亮处",
+              title: "穿过拱门",
+              scene: "建筑通道",
+              summary: "拱门围住远处亮景，近处行人被压成清楚剪影。",
+              note: "通道内部保持暗色，拱形出口像一个独立画框。行人横向经过，自行车与远处建筑留在亮处，明暗边界把不同距离分开。",
+              shape: "wide",
+              position: "50% 52%"
+            },
+            {
+              id: "02",
+              src: "photos/light-and-shadow/umbrella-silhouettes.jpg",
+              alt: "狭窄建筑开口之间，两名撑伞的人以剪影出现在亮色天空前",
+              title: "伞下轮廓",
+              scene: "城市通道",
+              summary: "深色建筑夹出不规则天空，两把伞和人物轮廓落在明暗边缘。",
+              note: "画面大部分处在阴影中，天空只从建筑缝隙里露出。人物分别站在不同高度，两把伞的曲线与墙体锐利边缘形成对照。",
+              shape: "portrait",
+              position: "50% 52%"
+            }
+          ]
+        },
+        {
+          id: "aerial",
+          title: "航拍",
+          englishTitle: "Aerial Photography",
+          category: "航拍",
+          location: "旅途中",
+          status: "持续整理中",
+          coverWorkId: "cover",
+          coverShape: "wide",
+          coverOrientation: "landscape",
+          homeCoverPosition: "50% 50%",
+          heroCoverPosition: "50% 50%",
+          detailCoverPosition: "50% 50%",
+          coverPosition: "50% 50%",
+          description: "从俯视角度观察道路、水体、建筑与植被之间的关系，让空间结构和尺度变得清楚。",
+          note: "航拍改变了平时站在地面上的观看方式。这里不记录高度和设备信息，只整理画面中能够确认的地貌、道路、水体和城市结构。",
+          works: [
+            {
+              id: "cover",
+              src: "photos/aerial/cover.jpg",
+              alt: "俯视森林中两条小路交叉，树冠从四周包围道路",
+              title: "林间分岔",
+              scene: "林地上空",
+              summary: "两条道路在密集树冠间交叉，深浅不同的绿色标出植被层次。",
+              note: "俯视角度让树冠连成完整表面，只有道路切开植被。交叉口没有建筑和车辆，路径方向成为画面的主要结构。",
+              shape: "wide",
+              position: "50% 50%"
+            },
+            {
+              id: "01",
+              src: "photos/aerial/campus-axis.jpg",
+              alt: "俯视大片建筑与绿地，一条中轴道路从前景通向远处城区",
+              title: "绿地中轴",
+              scene: "城市上空",
+              summary: "建筑、树木和道路沿中轴展开，远处城市轮廓逐渐抬高。",
+              note: "中央道路把前景绿地与后方建筑连接起来，两侧空间大致对称。更远处的高层形成另一条天际线，显示出不同尺度的城市结构。",
+              shape: "wide",
+              position: "50% 52%"
+            },
+            {
+              id: "02",
+              src: "photos/aerial/roads-and-towers.jpg",
+              alt: "高架道路在密集楼群之间交叉，车辆沿多层道路通行",
+              title: "道路交汇",
+              scene: "城市上空",
+              summary: "多层道路从楼群间穿过，弯道、匝道和车流组成密集结构。",
+              note: "竖幅画面把道路交叉放在中央，楼群从两侧向远处延伸。车辆尺寸很小，复杂路网因此成为最醒目的图案。",
+              shape: "portrait",
+              position: "50% 54%"
+            },
+            {
+              id: "03",
+              src: "photos/aerial/water-shape.jpg",
+              alt: "绿色水面中有一处不规则植被小岛，细长构筑物从右侧伸向水中",
+              title: "水中形状",
+              scene: "水面上空",
+              summary: "不规则绿色小岛停在水面中央，一条细长结构从岸边方向伸来。",
+              note: "俯视视角压平了水面，植被聚成近似圆形的主体。右侧结构与中央小岛保持距离，让水面留出大面积空白。",
+              shape: "wide",
+              position: "56% 50%"
+            },
+            {
+              id: "04",
+              src: "photos/aerial/field-path.jpg",
+              alt: "俯视绿色田地，一条土路斜向穿过，路边有一名穿浅色衣服的人",
+              title: "田间斜线",
+              scene: "田地上空",
+              summary: "土路斜穿过整片绿色田地，人物在路旁形成一个很小的亮点。",
+              note: "均匀作物纹理铺满画面，只有道路切出一条斜线。人物位于线条附近，身体尺度让田地的范围更容易感知。",
+              shape: "wide",
+              position: "48% 50%"
+            }
+          ]
+        },
+        {
+          id: "shenzhen",
+          title: "深圳影像",
+          englishTitle: "Shenzhen Images",
+          category: "城市影像",
+          location: "深圳",
+          status: "持续整理中",
+          coverWorkId: "cover",
+          coverShape: "wide",
+          coverOrientation: "landscape",
+          homeCoverPosition: "50% 50%",
+          heroCoverPosition: "50% 50%",
+          detailCoverPosition: "50% 50%",
+          coverPosition: "50% 50%",
+          description: "整理在深圳拍摄的建筑、公共空间和行走途中遇见的画面，关注人与城市尺度的关系。",
+          note: "这一栏目从建筑立面、中庭、夜间楼宇和水边树木展开。具体建筑名称尚未逐一确认，因此只保留照片能够支持的空间描述。",
+          works: [
+            {
+              id: "cover",
+              src: "photos/shenzhen/cover.jpg",
+              alt: "环形建筑内部，螺旋通道沿圆形空间向远处展开",
+              title: "环形通道",
+              scene: "深圳 · 建筑内部",
+              summary: "环形通道层层向远处收拢，红白构件和人物分布在弧线之间。",
+              note: "广角取景强调了圆形空间的连续性，顶部、墙面和地面都沿同一方向弯曲。人物位于通道中部，提供了建筑尺度。",
+              shape: "wide",
+              position: "50% 50%"
+            },
+            {
+              id: "01",
+              src: "photos/shenzhen/tree-in-water.jpg",
+              alt: "黑白长曝光画面中，一棵树独立生长在平静水面上",
+              title: "水中一树",
+              scene: "深圳 · 水边",
+              summary: "孤立树木停在平滑水面上，远处岸线被压成一条浅色横线。",
+              note: "长时间曝光让水面接近雾状，树干和树冠因此更清楚。竖幅画面保留大面积天空与水面，主体保持在下方中央。",
+              shape: "portrait",
+              position: "50% 54%"
+            },
+            {
+              id: "02",
+              src: "photos/shenzhen/window-grid.jpg",
+              alt: "建筑立面上密集排列着大小相近的窗框和阳台",
+              title: "窗格重复",
+              scene: "深圳 · 建筑立面",
+              summary: "窗框和阳台铺满横幅画面，浅色墙面形成连续网格。",
+              note: "正面观看让建筑深度被压平，每个窗格像独立小框。少量窗帘和物品打破重复，使立面保留日常使用痕迹。",
+              shape: "wide",
+              position: "50% 50%"
+            },
+            {
+              id: "03",
+              src: "photos/shenzhen/white-walls.jpg",
+              alt: "两面高大的白色建筑墙体夹出狭长空间，一名行人位于底部",
+              title: "白墙之间",
+              scene: "深圳 · 建筑外部",
+              summary: "高墙和窗口围住狭长地面，人物在底部显示出明显尺度差。",
+              note: "两侧白墙几乎填满画面，窗口被压成零散黑点。行人位于墙体交接处，宽阔地面与高墙共同强调空间高度。",
+              shape: "portrait",
+              position: "50% 60%"
+            },
+            {
+              id: "04",
+              src: "photos/shenzhen/night-tower.jpg",
+              alt: "夜色中一组带有明亮轮廓灯的高层建筑从暗处升起",
+              title: "夜间楼群",
+              scene: "深圳 · 城市夜景",
+              summary: "高层建筑的轮廓灯从暗色环境中显现，近处地面只留下一小片亮区。",
+              note: "竖幅取景把楼体向上延伸，灯带勾出不同高度的建筑轮廓。前景较暗，只有一处圆形灯光落在地面，让近远距离有所区分。",
+              shape: "portrait",
+              position: "50% 48%"
+            },
+            {
+              id: "05",
+              src: "photos/shenzhen/atrium-roof.jpg",
+              alt: "大型建筑中庭的网格顶棚围住椭圆形天窗，下方是开阔通道",
+              title: "椭圆天窗",
+              scene: "深圳 · 建筑内部",
+              summary: "顶棚网格向中央椭圆天窗聚拢，下方通道保持开阔和对称。",
+              note: "宽幅画面以中央天窗为轴，顶棚结构从四周向内收束。地面、扶梯和栏杆沿相同方向展开，空间秩序清楚。",
+              shape: "wide",
+              position: "50% 46%"
+            }
+          ]
+        },
+        {
+          id: "zhuhai",
+          title: "珠海影像",
+          englishTitle: "Zhuhai Images",
+          category: "城市影像",
+          location: "珠海",
+          status: "持续整理中",
+          coverWorkId: "cover",
+          coverShape: "wide",
+          coverOrientation: "landscape",
+          homeCoverPosition: "50% 50%",
+          heroCoverPosition: "50% 50%",
+          detailCoverPosition: "50% 50%",
+          coverPosition: "50% 50%",
+          description: "整理在珠海拍摄的海边、建筑、公共空间和俯视画面，记录旅途中看到的城市日常。",
+          note: "这一栏目包含海边建筑、草坡、滨水步道和城市上空的视角。除珠海这一大范围地点外，不为照片补写未经确认的景点名称。",
+          works: [
+            {
+              id: "cover",
+              src: "photos/zhuhai/cover.jpg",
+              alt: "紫色暮光下，滨水建筑和城市楼群倒映在平静水面上",
+              title: "滨水暮色",
+              scene: "珠海 · 水边",
+              summary: "滨水建筑与城市天际线沿水面展开，倒影在暮色中保持完整。",
+              note: "水面接近平静，建筑轮廓和灯光形成清楚倒影。紫蓝天空占据上方，岸线从两侧向中央延伸，城市与水体保持着开阔距离。",
+              shape: "wide",
+              position: "50% 50%"
+            },
+            {
+              id: "01",
+              src: "photos/zhuhai/white-house-slope.jpg",
+              alt: "草坡上立着一座小型白色建筑，蓝天和云层从后方展开",
+              title: "坡顶白屋",
+              scene: "珠海 · 城市一角",
+              summary: "白色小建筑停在草坡最高处，低机位让天空占据大部分画面。",
+              note: "草坡从前景缓慢升高，建筑被放在接近天际线的位置。白色表面与蓝天分开，周围没有多余设施，形体显得清楚。",
+              shape: "wide",
+              position: "50% 48%"
+            },
+            {
+              id: "02",
+              src: "photos/zhuhai/white-house-portrait.jpg",
+              alt: "竖幅草坡上，一座白色小建筑旁站着一名行人",
+              title: "白屋旁的人",
+              scene: "珠海 · 城市一角",
+              summary: "人物站在白色建筑旁，竖幅画面突出草坡高度和天空范围。",
+              note: "低角度让草地占据下方大部分，人物与建筑位于坡顶。两者大小接近，行人的出现让小建筑尺度更容易判断。",
+              shape: "portrait",
+              position: "50% 52%"
+            },
+            {
+              id: "03",
+              src: "photos/zhuhai/waterside-path.jpg",
+              alt: "夕阳下的滨水步道伸向远处，阶梯状构筑物顶部有一道人形轮廓",
+              title: "水边台阶",
+              scene: "珠海 · 滨水空间",
+              summary: "步道和阶梯沿水面伸向夕阳，人形轮廓停在构筑物顶部。",
+              note: "夕阳从画面左侧照向水面，铺装步道形成清楚引导线。阶梯状构筑物横向伸出，上方轮廓与远处水岸保持距离。",
+              shape: "wide",
+              position: "50% 48%"
+            },
+            {
+              id: "04",
+              src: "photos/zhuhai/waterfront-aerial.jpg",
+              alt: "俯视滨水公共建筑群，弧形道路和白色建筑朝水面展开",
+              title: "滨水建筑群",
+              scene: "珠海 · 城市上空",
+              summary: "白色建筑、弧形道路和水岸共同组成向外展开的公共空间。",
+              note: "俯视角度将建筑屋顶和道路形状完整保留，水面围在建筑群外侧。不同弧线相互连接，让滨水空间呈现清楚布局。",
+              shape: "wide",
+              position: "50% 52%"
+            },
+            {
+              id: "05",
+              src: "photos/zhuhai/star-building.jpg",
+              alt: "夜间俯视一座星形建筑，水体和道路从建筑四周展开",
+              title: "星形屋顶",
+              scene: "珠海 · 城市上空",
+              summary: "发亮的星形建筑位于水体中央，周边道路和灯带勾出边界。",
+              note: "垂直俯视压平了建筑高度，屋顶轮廓成为画面中心。水面保持深色，岸边灯光和道路从四周围合主体。",
+              shape: "wide",
+              position: "50% 50%"
+            }
+          ]
+        },
+        {
+          id: "hong-kong",
+          title: "香港影像",
+          englishTitle: "Hong Kong Images",
+          category: "城市影像",
+          location: "香港",
+          status: "持续整理中",
+          coverWorkId: "cover",
+          coverShape: "wide",
+          coverOrientation: "landscape",
+          homeCoverPosition: "50% 54%",
+          heroCoverPosition: "50% 54%",
+          detailCoverPosition: "50% 54%",
+          coverPosition: "50% 54%",
+          description: "整理在香港行走时拍摄的楼梯、建筑、街道与交通，保留城市密度中的具体观看。",
+          note: "栏目从楼梯和建筑立面进入，也包含雨天街面与住宅外墙。文字不套用城市标签，只说明照片里可见的结构、行人和交通。",
+          works: [
+            {
+              id: "cover",
+              src: "photos/hong-kong/cover.jpg",
+              alt: "建筑楼梯间落下强烈斜光，一人坐在台阶暗部",
+              title: "斜光楼梯",
+              scene: "香港 · 建筑内部",
+              summary: "几道斜光穿过高墙落在楼梯上，坐着的人停在明暗交界处。",
+              note: "墙面和楼梯形成连续深色块，窗格投下的光带沿斜线进入。人物位于下方台阶，身体与光线保持一段距离。",
+              shape: "wide",
+              position: "50% 54%"
+            },
+            {
+              id: "01",
+              src: "photos/hong-kong/station-stairs.jpg",
+              alt: "室内宽楼梯上两名行人分别向上和向下行走",
+              title: "楼梯两向",
+              scene: "香港 · 建筑内部",
+              summary: "两名行人在同一楼梯上相向移动，扶手把台阶分成清楚区域。",
+              note: "楼梯居中向上延伸，两侧扶手和墙面大致对称。一人向上，一人向下，移动方向让静态空间出现短暂交会。",
+              shape: "wide",
+              position: "50% 52%"
+            },
+            {
+              id: "02",
+              src: "photos/hong-kong/taxi-facade.jpg",
+              alt: "几何窗格建筑前，一辆红色出租车沿道路经过",
+              title: "红车经过",
+              scene: "香港 · 城市街道",
+              summary: "红色车辆从白色几何立面前经过，弧形柱廊压在画面下方。",
+              note: "建筑表面由重复方格组成，下方连续拱券与道路平行。红色车辆处在两种重复结构之间，成为画面里唯一明显暖色。",
+              shape: "portrait",
+              position: "50% 55%"
+            },
+            {
+              id: "03",
+              src: "photos/hong-kong/buildings-upward.jpg",
+              alt: "仰视多座高层建筑，暖色窗格从四周围住中央天空",
+              title: "楼群向上",
+              scene: "香港 · 建筑之间",
+              summary: "高层建筑从四周向中央聚拢，网格立面和天空形成清楚边界。",
+              note: "仰视角度让建筑边缘围成长方形开口，窗格反射出暖色。中央天空保留蓝色，建筑密度通过向上的聚拢关系显现。",
+              shape: "wide",
+              position: "50% 48%"
+            },
+            {
+              id: "04",
+              src: "photos/hong-kong/rainy-street.jpg",
+              alt: "俯视雨天街道，行人撑伞穿过中英文道路标线",
+              title: "雨中街面",
+              scene: "香港 · 城市街道",
+              summary: "撑伞行人从湿润路面经过，道路文字与黄色边线斜向穿过画面。",
+              note: "较慢快门让部分行人留下移动模糊，雨伞和身体方向不完全一致。中英文标线被纳入构图，湿路面接住周围反光。",
+              shape: "wide",
+              position: "50% 50%"
+            },
+            {
+              id: "05",
+              src: "photos/hong-kong/residential-facade.jpg",
+              alt: "彩色住宅立面前排列着长椅、树木和公共设施",
+              title: "楼下长椅",
+              scene: "香港 · 住宅外部",
+              summary: "密集窗户铺满住宅立面，几张长椅和树木留在开阔前地。",
+              note: "立面由浅黄、粉色和白色格子组成，窗户和空调重复排列。下方长椅、垃圾桶和树木保持较大间隔，让高密度墙面与空地形成对照。",
+              shape: "wide",
+              position: "50% 50%"
+            }
+          ]
+        }
+      ];
+
+      newSeries.forEach((series) => seriesList.push(series));
+
+      const preferredSeriesOrder = [
+        "tuoche-rensheng",
+        "xiangjian-hechu",
+        "documentary",
+        "architecture",
+        "landscape",
+        "animals",
+        "abstract",
+        "light-and-shadow",
+        "aerial",
+        "shandong",
+        "shenzhen",
+        "zhuhai",
+        "hong-kong"
+      ];
+      const orderedSeries = preferredSeriesOrder
+        .map((id) => seriesList.find((series) => series.id === id))
+        .filter(Boolean);
+      orderedSeries.forEach((series, index) => {
+        series.number = String(index + 1).padStart(2, "0");
+      });
+      seriesList.splice(0, seriesList.length, ...orderedSeries);
 
       const defaultTitle = "LilD Photos｜街上见";
       const homeView = document.getElementById("home-view");

@@ -28,10 +28,13 @@
 
       html {
         scroll-behavior: smooth;
+        overflow-x: clip;
       }
 
       body {
         margin: 0;
+        min-width: 0;
+        overflow-wrap: break-word;
         background:
           radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.045), transparent 32%),
           radial-gradient(circle at 72% 46%, rgba(185, 135, 84, 0.1) 0.7px, transparent 0.8px),
@@ -88,6 +91,12 @@
         border-bottom: 1px solid var(--line);
         position: relative;
         z-index: 20;
+      }
+
+      .mobile-brand,
+      .menu-button,
+      .carousel-status {
+        display: none;
       }
 
       .wordmark,
@@ -179,6 +188,13 @@
         grid-template-columns: minmax(390px, 38vw) 1fr;
         position: relative;
         border-bottom: 1px solid var(--line);
+      }
+
+      .hero > *,
+      .hero-copy,
+      .hero-image,
+      .hero-media-controls {
+        min-width: 0;
       }
 
       .hero:focus-visible {
@@ -363,6 +379,15 @@
         transition: background 180ms ease, transform 180ms ease;
       }
 
+      .carousel-status {
+        flex: 0 0 auto;
+        color: var(--muted);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+      }
+
       .carousel-dot[aria-current="true"] {
         background: var(--rust);
         border-color: var(--rust);
@@ -491,6 +516,7 @@
       .series-card.is-portrait .series-card-cover {
         width: min(100%, 420px);
         margin-inline: auto;
+        aspect-ratio: 2 / 3;
       }
 
       .series-card-cover img {
@@ -502,8 +528,8 @@
       }
 
       .series-card.is-portrait .series-card-cover img {
-        height: auto;
-        object-fit: initial;
+        height: 100%;
+        object-fit: cover;
       }
 
       .series-card:hover .series-card-cover img,
@@ -917,6 +943,7 @@
         height: auto;
         max-height: min(60svh, 580px);
         object-fit: contain;
+        contain-intrinsic-size: 900px 600px;
         transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 280ms ease;
       }
 
@@ -1219,6 +1246,10 @@
           padding: 72px clamp(25px, 7vw, 72px) 54px;
         }
 
+        .hero {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
         .hero-image {
           width: min(calc(100% - 10vw), 900px);
           height: auto;
@@ -1323,57 +1354,237 @@
       }
 
       @media (max-width: 640px) {
+        :root {
+          --mobile-gutter: max(18px, env(safe-area-inset-left));
+          --mobile-gutter-right: max(18px, env(safe-area-inset-right));
+        }
+
+        html,
+        body {
+          max-width: 100%;
+          overflow-x: clip;
+        }
+
+        body {
+          -webkit-tap-highlight-color: transparent;
+        }
+
         .site-header {
-          min-height: auto;
-          grid-template-columns: 1fr;
-          padding: 18px 0;
+          min-height: 72px;
+          grid-template-columns: minmax(0, 1fr) auto;
+          align-items: center;
+          padding: 0 var(--mobile-gutter-right) 0 var(--mobile-gutter);
+          background: rgba(21, 19, 16, 0.96);
         }
 
         .wordmark {
-          padding: 0 20px;
-          font-size: 1.8rem;
+          min-width: 0;
+          padding: 0;
+          font-size: clamp(1.8rem, 8vw, 2.2rem);
+          line-height: 1;
+        }
+
+        .desktop-brand {
+          display: none;
+        }
+
+        .mobile-brand {
+          display: inline;
+        }
+
+        .menu-button {
+          width: 48px;
+          height: 48px;
+          border: 1px solid var(--line);
+          padding: 0;
+          display: inline-grid;
+          place-items: center;
+          color: var(--ink);
+          background: transparent;
+          cursor: pointer;
+          font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+          font-size: 0.7rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+
+        .menu-button[aria-expanded="true"] {
+          color: var(--rust);
+          border-color: var(--rust);
         }
 
         .site-header nav {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          z-index: 30;
+          min-width: 0;
+          max-height: 0;
+          overflow: hidden;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
           justify-content: flex-start;
-          padding: 16px 20px 0;
-          gap: 17px;
-          font-size: 0.7rem;
+          gap: 0;
+          padding: 0 var(--mobile-gutter-right) 0 var(--mobile-gutter);
+          border-bottom: 1px solid transparent;
+          background: rgba(21, 19, 16, 0.98);
+          font-size: 0.78rem;
+          opacity: 0;
+          visibility: hidden;
+          transition: max-height 180ms ease, opacity 140ms ease, padding 180ms ease;
+        }
+
+        .site-header.is-menu-open nav {
+          max-height: 180px;
+          padding-top: 10px;
+          padding-bottom: 18px;
+          border-bottom-color: var(--line);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .site-header nav a {
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          padding: 0 12px;
+          border-bottom: 1px solid rgba(226, 213, 193, 0.12);
+        }
+
+        .site-header nav a::after {
+          display: none;
         }
 
         .hero-copy {
           min-height: 0;
-          padding: 58px 25px 48px;
+          padding: 46px var(--mobile-gutter-right) 34px var(--mobile-gutter);
         }
 
         .hero h1 {
-          font-size: clamp(3.3rem, 16vw, 5rem);
+          max-width: 100%;
+          font-size: clamp(2.8rem, 14vw, 3.65rem);
+          line-height: 1.04;
+          overflow-wrap: anywhere;
+        }
+
+        .eyebrow,
+        .section-kicker {
+          margin-bottom: 20px;
+          font-size: 0.68rem;
+        }
+
+        .location {
+          margin-top: 16px;
+          font-size: 0.98rem;
+          line-height: 1.45;
+          overflow-wrap: anywhere;
+        }
+
+        .hairline {
+          margin: 20px 0 18px;
+        }
+
+        .dek {
+          font-size: 1rem;
+          line-height: 1.8;
+        }
+
+        #hero-series-count {
+          margin-top: 18px;
         }
 
         .primary-link {
+          min-height: 50px;
+          margin-top: 26px;
+          padding: 14px 18px;
           width: 100%;
         }
 
         .hero-image {
-          width: calc(100% - 50px);
-          margin: 0 25px 32px;
+          width: auto;
+          max-width: calc(100% - var(--mobile-gutter) - var(--mobile-gutter-right));
+          margin: 0 var(--mobile-gutter-right) 28px var(--mobile-gutter);
         }
 
         .hero.is-portrait .hero-image {
-          width: min(86vw, 40svh);
-          margin: 0 auto 32px;
+          width: min(84%, 390px, 42svh);
+          margin: 0 auto 28px;
         }
 
         .hero.is-square .hero-image {
-          width: min(86vw, 520px);
+          width: min(calc(100% - var(--mobile-gutter) - var(--mobile-gutter-right)), 520px);
         }
 
         .hero-image-link {
-          height: min(58svh, 440px);
+          height: auto;
+          max-height: 62svh;
+          display: grid;
+          place-items: center;
+          overflow: visible;
+          touch-action: pan-y;
+        }
+
+        .hero.is-portrait .hero-image-link {
+          max-height: 62svh;
+        }
+
+        .hero-image img {
+          width: 100%;
+          height: auto;
+          max-height: 62svh;
+          object-fit: contain;
         }
 
         .hero-media-controls {
+          min-height: 44px;
           margin-top: 12px;
+          gap: 10px;
+        }
+
+        .carousel-status {
+          display: inline-block;
+        }
+
+        .hero-image figcaption {
+          display: none;
+        }
+
+        .carousel-dots {
+          flex: 1 1 auto;
+          min-height: 44px;
+          gap: 2px;
+          scroll-padding-inline: 12px;
+        }
+
+        .carousel-dot {
+          width: 34px;
+          height: 44px;
+          border: 0;
+          border-radius: 0;
+          position: relative;
+        }
+
+        .carousel-dot::before {
+          content: "";
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          left: 50%;
+          top: 50%;
+          border: 1px solid rgba(242, 235, 221, 0.72);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .carousel-dot[aria-current="true"] {
+          background: transparent;
+          transform: none;
+        }
+
+        .carousel-dot[aria-current="true"]::before {
+          border-color: var(--rust);
+          background: var(--rust);
         }
 
         .folio {
@@ -1385,9 +1596,29 @@
           gap: 28px;
         }
 
+        .series-index-section {
+          padding: 76px var(--mobile-gutter-right) 88px var(--mobile-gutter);
+        }
+
+        .section-heading {
+          margin-bottom: 54px;
+        }
+
+        .section-heading h2,
+        .notes-copy h2,
+        .about-section h2 {
+          font-size: clamp(2.45rem, 12vw, 3.2rem);
+          line-height: 1.12;
+        }
+
+        .section-intro {
+          font-size: 0.98rem;
+          line-height: 1.85;
+        }
+
         .series-grid {
           grid-template-columns: 1fr;
-          gap: 70px;
+          gap: 58px;
         }
 
         .series-card:nth-child(even) {
@@ -1404,11 +1635,34 @@
         }
 
         .series-card.is-portrait .series-card-cover {
-          width: min(86%, 420px);
+          width: min(86%, 390px);
         }
 
         .series-card-heading {
           display: block;
+        }
+
+        .series-card h3 {
+          font-size: clamp(2.15rem, 11vw, 2.9rem);
+          overflow-wrap: anywhere;
+        }
+
+        .series-card-english {
+          line-height: 1.55;
+          overflow-wrap: anywhere;
+        }
+
+        .series-card-description {
+          margin-top: 19px;
+          font-size: 0.96rem;
+          line-height: 1.85;
+        }
+
+        .series-enter {
+          min-height: 48px;
+          align-items: center;
+          margin-top: 22px;
+          padding-top: 10px;
         }
 
         .series-count {
@@ -1424,17 +1678,29 @@
         }
 
         .notes-copy {
-          padding: 88px 25px;
+          padding: 78px var(--mobile-gutter-right) 86px var(--mobile-gutter);
         }
 
         .notes-columns {
           grid-template-columns: 1fr;
-          margin-top: 46px;
+          gap: 28px;
+          margin-top: 38px;
+          padding-top: 24px;
+        }
+
+        .notes-columns p {
+          font-size: 1rem;
+          line-height: 1.95;
         }
 
         .about-section {
-          padding-left: 25px;
-          padding-right: 25px;
+          gap: 28px;
+          padding: 78px var(--mobile-gutter-right) 86px var(--mobile-gutter);
+        }
+
+        .about-section > p {
+          font-size: 1rem;
+          line-height: 1.95;
         }
 
         .next-series {
@@ -1443,16 +1709,39 @@
         }
 
         .series-detail {
-          padding-left: 25px;
-          padding-right: 25px;
+          padding: 28px var(--mobile-gutter-right) 92px var(--mobile-gutter);
+        }
+
+        .back-link {
+          min-height: 48px;
+          padding: 0 4px;
+          font-size: 0.72rem;
         }
 
         .series-masthead {
           grid-template-columns: 1fr;
+          gap: 38px;
+          margin-top: 30px;
+          padding-bottom: 60px;
         }
 
         .series-title {
-          font-size: clamp(3.4rem, 17vw, 5.5rem);
+          max-width: 100%;
+          font-size: clamp(2.75rem, 14vw, 3.7rem);
+          line-height: 1.06;
+          overflow-wrap: anywhere;
+        }
+
+        .series-english-title {
+          margin-top: 16px;
+          line-height: 1.55;
+          overflow-wrap: anywhere;
+        }
+
+        .series-description {
+          margin-top: 28px;
+          font-size: 1rem;
+          line-height: 1.85;
         }
 
         .series-meta {
@@ -1464,8 +1753,14 @@
           max-height: none;
         }
 
+        .series-detail-image .series-cover-button,
+        .series-detail-image img {
+          height: auto;
+          object-fit: contain;
+        }
+
         .series-detail-image.is-portrait {
-          width: min(84%, 420px);
+          width: min(86%, 390px);
           max-height: min(64svh, 520px);
         }
 
@@ -1482,6 +1777,13 @@
         .series-statement {
           grid-template-columns: 1fr;
           gap: 18px;
+          margin: 58px 0;
+          padding-bottom: 58px;
+        }
+
+        .series-statement p {
+          font-size: 1rem;
+          line-height: 1.95;
         }
 
         .works-heading {
@@ -1494,7 +1796,7 @@
 
         .works-grid {
           grid-template-columns: 1fr;
-          gap: 60px;
+          gap: 58px;
         }
 
         .work-card,
@@ -1511,9 +1813,21 @@
         }
 
         .image-wrap img,
+        .landscape .image-wrap img,
+        .wide .image-wrap img,
+        .full .image-wrap img {
+          width: 100%;
+          max-height: min(68svh, 620px);
+        }
+
+        .work-card.portrait {
+          width: min(88%, 390px);
+          justify-self: center;
+        }
+
         .portrait .image-wrap img {
           width: 100%;
-          max-height: none;
+          max-height: min(72svh, 640px);
         }
 
         .work-caption {
@@ -1526,9 +1840,43 @@
           text-align: left;
         }
 
+        .work-caption-title {
+          font-size: 1.02rem;
+          line-height: 1.55;
+        }
+
+        .work-caption small {
+          font-size: 0.67rem;
+          line-height: 1.65;
+        }
+
+        .work-caption-summary {
+          font-size: 0.94rem;
+          line-height: 1.78;
+        }
+
+        .image-button,
+        .series-cover-button {
+          min-height: 44px;
+          touch-action: pan-y;
+        }
+
+        .primary-link:active,
+        .series-card:active,
+        .back-link:active,
+        .lightbox-nav button:active,
+        .menu-button:active {
+          opacity: 0.72;
+        }
+
         footer {
           grid-template-columns: 1fr;
-          min-height: 230px;
+          min-height: 0;
+          gap: 14px;
+          padding: 42px var(--mobile-gutter-right)
+            max(42px, env(safe-area-inset-bottom)) var(--mobile-gutter);
+          font-size: 0.68rem;
+          line-height: 1.65;
         }
 
         footer .wordmark.small {
@@ -1537,20 +1885,168 @@
 
         .lightbox {
           padding: 0;
+          place-items: stretch;
+          background: var(--paper);
+          backdrop-filter: none;
         }
 
         .lightbox-panel {
-          max-height: 100svh;
-          min-height: 100svh;
+          width: 100%;
+          height: 100svh;
+          height: 100dvh;
+          max-height: none;
+          min-height: 0;
+          display: block;
+          overflow-x: hidden;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          scroll-padding-top: calc(64px + env(safe-area-inset-top));
           border: 0;
+          box-shadow: none;
         }
 
         .lightbox-image {
-          min-height: 43svh;
+          min-height: 0;
+          height: min(56svh, 520px);
+          padding: calc(60px + env(safe-area-inset-top)) 12px 12px;
+          touch-action: pan-y;
+        }
+
+        .lightbox-image img {
+          width: 100%;
+          height: 100%;
+          max-height: none;
+          object-fit: contain;
         }
 
         .lightbox-copy {
-          padding: 60px 25px 42px;
+          min-height: 44svh;
+          padding: 34px var(--mobile-gutter-right)
+            max(42px, env(safe-area-inset-bottom)) var(--mobile-gutter);
+          justify-content: flex-start;
+        }
+
+        .lightbox-copy h2 {
+          font-size: clamp(2.45rem, 12vw, 3.35rem);
+          line-height: 1.08;
+          overflow-wrap: anywhere;
+        }
+
+        .lightbox-summary,
+        .lightbox-note {
+          font-size: 0.98rem;
+          line-height: 1.88;
+        }
+
+        .close-button {
+          position: fixed;
+          top: max(10px, env(safe-area-inset-top));
+          right: max(12px, env(safe-area-inset-right));
+          min-width: 72px;
+          min-height: 48px;
+          padding: 0 14px;
+          border: 1px solid var(--line);
+          background: rgba(21, 19, 16, 0.96);
+        }
+
+        .lightbox-nav {
+          grid-template-columns: minmax(96px, auto) 1fr minmax(96px, auto);
+          gap: 8px;
+          margin-top: 26px;
+        }
+
+        .lightbox-nav button {
+          min-height: 48px;
+          padding: 0 10px;
+          border: 1px solid var(--line);
+          font-size: 0.76rem;
+        }
+      }
+
+      @media (max-height: 500px) and (orientation: landscape) {
+        .site-header {
+          min-height: 60px;
+        }
+
+        .hero {
+          min-height: 0;
+          grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+        }
+
+        .hero-copy {
+          padding: 26px max(22px, env(safe-area-inset-left));
+          border-right: 1px solid var(--line);
+        }
+
+        .hero h1 {
+          font-size: clamp(2.3rem, 7vw, 3.2rem);
+        }
+
+        .hero .dek {
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          font-size: 0.9rem;
+        }
+
+        .hero .hairline {
+          margin: 12px 0;
+        }
+
+        .hero .primary-link {
+          margin-top: 14px;
+        }
+
+        .hero-image,
+        .hero.is-portrait .hero-image,
+        .hero.is-square .hero-image {
+          width: min(calc(100% - 40px), 620px);
+          max-width: none;
+          margin: 18px auto;
+        }
+
+        .hero-image-link,
+        .hero.is-portrait .hero-image-link,
+        .hero.is-square .hero-image-link {
+          height: min(62svh, 280px);
+          aspect-ratio: auto;
+          overflow: hidden;
+        }
+
+        .hero-image img {
+          width: 100%;
+          height: 100%;
+          max-height: none;
+          object-fit: contain;
+        }
+
+        .hero-media-controls {
+          margin-top: 4px;
+        }
+
+        .lightbox-panel {
+          display: grid;
+          grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+          overflow: hidden;
+        }
+
+        .lightbox-image {
+          height: 100dvh;
+          padding: max(12px, env(safe-area-inset-top)) 12px
+            max(12px, env(safe-area-inset-bottom));
+        }
+
+        .lightbox-copy {
+          height: 100dvh;
+          min-height: 0;
+          overflow-y: auto;
+          padding: 54px max(20px, env(safe-area-inset-right))
+            max(24px, env(safe-area-inset-bottom)) 24px;
+        }
+
+        .lightbox-copy h2 {
+          font-size: clamp(2rem, 5vw, 2.8rem);
         }
       }
 
@@ -1571,8 +2067,20 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="wordmark" href="#home" aria-label="回到栏目首页">LilD Photos</a>
-      <nav aria-label="主导航">
+      <a class="wordmark" href="#home" aria-label="回到栏目首页">
+        <span class="desktop-brand">LilD Photos</span><span class="mobile-brand">街上见</span>
+      </a>
+      <button
+        class="menu-button"
+        id="menu-button"
+        type="button"
+        aria-label="打开导航菜单"
+        aria-controls="primary-navigation"
+        aria-expanded="false"
+      >
+        菜单
+      </button>
+      <nav id="primary-navigation" aria-label="主导航" aria-hidden="false">
         <a href="#home">首页</a>
         <a href="#works">作品</a>
         <a href="#notes">札记</a>
@@ -1621,6 +2129,7 @@
             </a>
             <div class="hero-media-controls">
               <div class="carousel-dots" id="carousel-dots" aria-label="选择栏目封面"></div>
+              <span class="carousel-status" id="carousel-status" aria-live="polite">01 / 13</span>
               <figcaption id="hero-caption">拖车人生 · 07 张照片</figcaption>
             </div>
           </figure>
@@ -2001,7 +2510,7 @@
           "works": [
             {
               "id": "cover",
-              "src": "photos/landscape/cover.jpg",
+              "src": "photos/landscape/2.jpg",
               "alt": "黄昏时的水道两侧排列着树木和建筑，粉紫色晚霞映在平静水面上",
               "title": "水面晚霞",
               "scene": "水边 · 黄昏",
@@ -3100,6 +3609,9 @@
       const homeView = document.getElementById("home-view");
       const seriesView = document.getElementById("series-view");
       const seriesGrid = document.getElementById("series-grid");
+      const siteHeader = document.querySelector(".site-header");
+      const menuButton = document.getElementById("menu-button");
+      const primaryNavigation = document.getElementById("primary-navigation");
       const heroCarousel = document.getElementById("home");
       const heroImageFrame = document.getElementById("hero-image-frame");
       const heroImage = document.getElementById("hero-carousel-image");
@@ -3112,6 +3624,7 @@
       const heroSeriesLink = document.getElementById("hero-series-link");
       const heroCaption = document.getElementById("hero-caption");
       const carouselDots = document.getElementById("carousel-dots");
+      const carouselStatus = document.getElementById("carousel-status");
       const seriesWorksGrid = document.getElementById("series-works-grid");
       const seriesCoverButton = document.getElementById("series-cover-button");
       const seriesCoverFigure = seriesCoverButton.closest("figure");
@@ -3138,6 +3651,25 @@
       let carouselTimer = null;
       let carouselHoverPaused = false;
       let carouselFocusPaused = false;
+      let carouselTouchPaused = false;
+      let lockedScrollY = 0;
+
+      function isMobileNavigation() {
+        return window.matchMedia("(max-width: 640px)").matches;
+      }
+
+      function setMenuOpen(open, { returnFocus = false } = {}) {
+        const shouldOpen = Boolean(open && isMobileNavigation());
+        siteHeader.classList.toggle("is-menu-open", shouldOpen);
+        menuButton.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+        menuButton.setAttribute("aria-label", shouldOpen ? "关闭导航菜单" : "打开导航菜单");
+        primaryNavigation.setAttribute("aria-hidden", shouldOpen || !isMobileNavigation() ? "false" : "true");
+        if (shouldOpen) {
+          primaryNavigation.querySelector("a")?.focus();
+        } else if (returnFocus && isMobileNavigation()) {
+          menuButton.focus();
+        }
+      }
 
       function getCoverWork(series) {
         if (!series.coverWorkId) return null;
@@ -3230,7 +3762,8 @@
           !reducedMotionQuery.matches &&
           !document.hidden &&
           !carouselHoverPaused &&
-          !carouselFocusPaused
+          !carouselFocusPaused &&
+          !carouselTouchPaused
         );
       }
 
@@ -3263,9 +3796,14 @@
         heroCount.textContent = `${String(series.works.length).padStart(2, "0")} PHOTOGRAPHS`;
         heroSeriesLink.href = target;
         heroCaption.textContent = `${series.title} · ${String(series.works.length).padStart(2, "0")} 张照片`;
+        carouselStatus.textContent = `${String(activeCarouselIndex + 1).padStart(2, "0")} / ${String(carouselSeries.length).padStart(2, "0")}`;
         Array.from(carouselDots.children).forEach((dot, dotIndex) => {
           dot.setAttribute("aria-current", dotIndex === activeCarouselIndex ? "true" : "false");
         });
+        const activeDot = carouselDots.children[activeCarouselIndex];
+        if (activeDot && isMobileNavigation()) {
+          activeDot.scrollIntoView({ behavior: "auto", block: "nearest", inline: "center" });
+        }
 
         const nextSeries = carouselSeries[(activeCarouselIndex + 1) % carouselSeries.length];
         const nextCover = getCoverWork(nextSeries);
@@ -3403,7 +3941,14 @@
 
         requestAnimationFrame(() => {
           const target = document.getElementById(targetId || "home");
-          if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
+          if (target) {
+            const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+            document.documentElement.style.scrollBehavior = "auto";
+            target.scrollIntoView({ behavior: "auto", block: "start" });
+            requestAnimationFrame(() => {
+              document.documentElement.style.scrollBehavior = previousScrollBehavior;
+            });
+          }
         });
       }
 
@@ -3417,6 +3962,7 @@
 
       function routeFromHash() {
         closeLightbox();
+        setMenuOpen(false);
         const hash = decodeURIComponent(window.location.hash.replace(/^#/, ""));
         if (hash.startsWith("series-")) {
           const seriesId = hash.slice("series-".length);
@@ -3449,8 +3995,14 @@
         lastFocusedElement = trigger;
         lightboxSeriesData = series;
         renderLightboxWork(series, series.works.findIndex((item) => item.id === work.id));
+        lockedScrollY = window.scrollY;
         lightbox.hidden = false;
         document.body.classList.add("is-modal-open");
+        if (isMobileNavigation()) {
+          document.body.style.position = "fixed";
+          document.body.style.top = `-${lockedScrollY}px`;
+          document.body.style.width = "100%";
+        }
         closeButton.focus();
       }
 
@@ -3463,10 +4015,22 @@
         if (lightbox.hidden) return;
         lightbox.hidden = true;
         document.body.classList.remove("is-modal-open");
+        const shouldRestoreScroll = document.body.style.position === "fixed";
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        if (shouldRestoreScroll) {
+          const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+          document.documentElement.style.scrollBehavior = "auto";
+          window.scrollTo(0, lockedScrollY);
+          requestAnimationFrame(() => {
+            document.documentElement.style.scrollBehavior = previousScrollBehavior;
+          });
+        }
         lightboxSeriesData = null;
         activeWorkIndex = -1;
         if (lastFocusedElement && document.contains(lastFocusedElement)) {
-          lastFocusedElement.focus();
+          lastFocusedElement.focus({ preventScroll: true });
         }
       }
 
@@ -3492,7 +4056,46 @@
         if (event.target === lightbox) closeLightbox();
       });
 
+      menuButton.addEventListener("click", () => {
+        setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true", { returnFocus: true });
+      });
+
+      primaryNavigation.addEventListener("click", (event) => {
+        if (event.target.closest("a")) setMenuOpen(false);
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (menuButton.getAttribute("aria-expanded") === "true" && !siteHeader.contains(event.target)) {
+          setMenuOpen(false, { returnFocus: true });
+        }
+      });
+
       document.addEventListener("keydown", (event) => {
+        if (lightbox.hidden && menuButton.getAttribute("aria-expanded") === "true") {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            setMenuOpen(false, { returnFocus: true });
+            return;
+          }
+
+          if (event.key === "Tab") {
+            const menuFocusable = [
+              menuButton,
+              ...primaryNavigation.querySelectorAll("a[href]")
+            ];
+            const first = menuFocusable[0];
+            const last = menuFocusable[menuFocusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
+            }
+          }
+          return;
+        }
+
         if (lightbox.hidden) return;
         if (event.key === "Escape") {
           closeLightbox();
@@ -3560,6 +4163,67 @@
         }
       });
 
+      function addHorizontalSwipe(element, onSwipe, onActiveChange) {
+        let pointerId = null;
+        let startX = 0;
+        let startY = 0;
+        let horizontalIntent = false;
+
+        element.addEventListener("pointerdown", (event) => {
+          if (event.pointerType === "mouse" && event.button !== 0) return;
+          pointerId = event.pointerId;
+          startX = event.clientX;
+          startY = event.clientY;
+          horizontalIntent = false;
+          onActiveChange?.(true);
+        });
+
+        element.addEventListener("pointermove", (event) => {
+          if (event.pointerId !== pointerId) return;
+          const deltaX = event.clientX - startX;
+          const deltaY = event.clientY - startY;
+          if (!horizontalIntent && Math.abs(deltaX) > 12 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25) {
+            horizontalIntent = true;
+          }
+          if (horizontalIntent) event.preventDefault();
+        });
+
+        const finish = (event) => {
+          if (event.pointerId !== pointerId) return;
+          const deltaX = event.clientX - startX;
+          const deltaY = event.clientY - startY;
+          if (horizontalIntent && Math.abs(deltaX) >= 52 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25) {
+            onSwipe(deltaX < 0 ? 1 : -1);
+          }
+          pointerId = null;
+          horizontalIntent = false;
+          onActiveChange?.(false);
+        };
+
+        element.addEventListener("pointerup", finish);
+        element.addEventListener("pointercancel", (event) => {
+          if (event.pointerId !== pointerId) return;
+          pointerId = null;
+          horizontalIntent = false;
+          onActiveChange?.(false);
+        });
+      }
+
+      addHorizontalSwipe(
+        heroImageLink,
+        (direction) => showHeroSeries(activeCarouselIndex + direction, { animate: true, resetTimer: true }),
+        (active) => {
+          carouselTouchPaused = active;
+          if (active) stopCarouselTimer();
+          else scheduleCarousel();
+        }
+      );
+
+      addHorizontalSwipe(
+        lightbox.querySelector(".lightbox-image"),
+        moveLightbox
+      );
+
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) stopCarouselTimer();
         else scheduleCarousel();
@@ -3570,8 +4234,16 @@
         else scheduleCarousel();
       });
 
+      window.addEventListener("resize", () => {
+        if (!isMobileNavigation()) setMenuOpen(false);
+        else if (menuButton.getAttribute("aria-expanded") !== "true") {
+          primaryNavigation.setAttribute("aria-hidden", "true");
+        }
+      });
+
       renderSeriesIndex();
       renderHeroCarousel();
+      if (isMobileNavigation()) primaryNavigation.setAttribute("aria-hidden", "true");
       window.addEventListener("hashchange", routeFromHash);
       routeFromHash();
     </script>

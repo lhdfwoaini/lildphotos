@@ -5,10 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="LilD Photos｜街上见——个人摄影作品集，收录在路上遇见的风景、人物与日常。"
+      content="LilD 的个人摄影作品集，记录广州街头、家乡、建筑、风光与旅途中的日常观察。"
     />
+    <meta name="theme-color" content="#10100f" />
     <meta name="color-scheme" content="dark" />
-    <title>街上见 | LilD Photos</title>
+    <link rel="canonical" href="https://lhdfwoaini.github.io/lildphotos/" />
+    <meta property="og:title" content="LilD Photos｜街上见" />
+    <meta
+      property="og:description"
+      content="LilD 的个人摄影作品集，记录广州街头、家乡、建筑、风光与旅途中的日常观察。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lhdfwoaini.github.io/lildphotos/" />
+    <meta
+      property="og:image"
+      content="https://lhdfwoaini.github.io/lildphotos/share-cover.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="LilD Photos｜街上见个人摄影作品集" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LilD Photos｜街上见" />
+    <meta
+      name="twitter:description"
+      content="LilD 的个人摄影作品集，记录广州街头、家乡、建筑、风光与旅途中的日常观察。"
+    />
+    <meta
+      name="twitter:image"
+      content="https://lhdfwoaini.github.io/lildphotos/share-cover.jpg"
+    />
+    <meta name="twitter:image:alt" content="LilD Photos｜街上见个人摄影作品集" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <title>LilD Photos｜街上见</title>
     <style>
       :root {
         --paper: #151310;
@@ -2061,9 +2089,7 @@
         }
       }
 
-      /* ==========================================================
-         北欧极简测试版：仅覆盖本地测试页，不影响任何稳定发布目录
-         ========================================================== */
+      /* 基础视觉变量 */
       :root {
         --paper: #f5f4f0;
         --paper-light: #ffffff;
@@ -3194,9 +3220,7 @@
         }
       }
 
-      /* ==========================================================
-         黑色融合测试版：暖黑个人摄影画册视觉覆盖层
-         ========================================================== */
+      /* 暖黑个人摄影画册视觉 */
       :root {
         --bg: #10100f;
         --bg-soft: #151513;
@@ -3204,7 +3228,7 @@
         --surface-light: #22211e;
         --text-primary: #eeeae2;
         --text-secondary: #aaa69e;
-        --text-muted: #77736c;
+        --text-muted: #858079;
         --line: rgba(238, 234, 226, 0.11);
         --line-strong: rgba(238, 234, 226, 0.2);
         --accent: #ad9270;
@@ -4290,6 +4314,325 @@
           justify-self: center;
         }
       }
+
+      /* 内容密度、卡片基线与移动端规则 */
+      .about-positioning {
+        max-width: 500px;
+        font-size: 0.94rem;
+        line-height: 1.82;
+      }
+
+      .about-portrait img {
+        aspect-ratio: 1 / 1;
+      }
+
+      .series-card {
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+      }
+
+      .series-card-copy {
+        min-height: 150px;
+        display: grid;
+        grid-template-rows: minmax(72px, auto) auto;
+      }
+
+      .series-card-heading {
+        min-height: 72px;
+      }
+
+      .series-enter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 45px;
+      }
+
+      .series-enter > span:last-child {
+        transition: transform 180ms ease;
+      }
+
+      .series-card:hover .series-enter > span:last-child,
+      .series-card:focus-visible .series-enter > span:last-child {
+        transform: translateX(4px);
+      }
+
+      .series-card:active .series-card-cover img,
+      .primary-link:active,
+      .series-adjacent-link:active,
+      .series-return-links a:active {
+        transform: scale(0.99);
+      }
+
+      .notes-section.is-compact {
+        min-height: 0;
+        padding: 54px 0;
+        display: grid;
+        grid-template-columns: minmax(130px, 0.28fr) minmax(0, 1.72fr);
+        align-items: start;
+        gap: 38px;
+      }
+
+      .notes-section.is-compact .notes-index {
+        min-height: 0;
+        padding: 0;
+        display: grid;
+        gap: 8px;
+        border-right: 0;
+      }
+
+      .notes-section.is-compact .notes-index span:last-child {
+        color: var(--text-muted);
+      }
+
+      .notes-section.is-compact .notes-copy {
+        max-width: 680px;
+        padding: 0;
+      }
+
+      .notes-section.is-compact .notes-copy h2 {
+        margin-top: 7px;
+        font-size: clamp(1.35rem, 2vw, 1.75rem);
+      }
+
+      .notes-section.is-compact .notes-placeholder {
+        margin: 14px 0 0;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.8;
+      }
+
+      .series-masthead > div:first-child {
+        max-width: 680px;
+      }
+
+      .series-description {
+        margin-bottom: 0;
+        line-height: 1.82;
+      }
+
+      .series-statement > p:last-child {
+        max-width: 66ch;
+      }
+
+      .series-detail-image {
+        margin: 0;
+      }
+
+      .works-heading {
+        padding-bottom: 16px;
+      }
+
+      .work-caption {
+        margin-top: 17px;
+        gap: 22px;
+      }
+
+      .work-caption-title {
+        line-height: 1.55;
+      }
+
+      .work-caption-details small {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .work-caption-details p {
+        display: block;
+        max-width: 46ch;
+        margin: 0;
+        overflow: visible;
+        color: var(--text-secondary);
+        line-height: 1.82;
+        -webkit-line-clamp: unset;
+      }
+
+      .series-bottom-nav {
+        margin-top: 96px;
+      }
+
+      .series-adjacent-link {
+        min-width: 0;
+      }
+
+      .series-adjacent-link > span:not([aria-hidden]) {
+        min-width: 0;
+      }
+
+      .series-adjacent-link strong {
+        overflow-wrap: anywhere;
+      }
+
+      #home-view:not([hidden]),
+      .series-detail:not([hidden]) {
+        animation: view-fade-in 200ms ease both;
+      }
+
+      .lightbox:not([hidden]) .lightbox-panel {
+        animation: modal-fade-in 180ms ease both;
+      }
+
+      @keyframes view-fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes modal-fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .about-hero-copy > p:not(.section-kicker) {
+          margin-bottom: 12px;
+        }
+
+        .about-positioning {
+          font-size: 0.9rem;
+          line-height: 1.72;
+        }
+
+        .about-english {
+          font-size: 0.76rem;
+          line-height: 1.6;
+        }
+
+        .about-portrait img {
+          max-height: min(74vw, 380px);
+        }
+
+        .series-card-copy {
+          min-height: 0;
+          grid-template-rows: auto auto;
+        }
+
+        .series-card-heading {
+          min-height: 0;
+        }
+
+        .notes-section.is-compact {
+          padding: 46px 0;
+          display: block;
+        }
+
+        .notes-section.is-compact .notes-index {
+          margin-bottom: 18px;
+        }
+
+        .series-detail {
+          padding-bottom: 78px;
+        }
+
+        .series-description,
+        .series-statement > p:last-child {
+          line-height: 1.78;
+        }
+
+        .work-caption {
+          margin-top: 14px;
+        }
+
+        .work-caption-details p {
+          max-width: none;
+        }
+
+        .series-bottom-nav {
+          margin-top: 72px;
+        }
+
+        .series-adjacent-link,
+        .series-return-links a {
+          min-height: 48px;
+        }
+      }
+
+      @media (max-height: 500px) and (orientation: landscape) {
+        html {
+          scroll-padding-top: 54px;
+        }
+
+        .site-header {
+          min-height: 52px;
+        }
+
+        #primary-navigation a {
+          padding-top: 13px;
+          padding-bottom: 12px;
+        }
+
+        .about-hero {
+          width: min(calc(100% - 40px), var(--max-width));
+          padding: 24px 0 30px;
+          grid-template-columns: minmax(320px, 0.95fr) minmax(300px, 1.05fr);
+          gap: 30px;
+          align-items: center;
+        }
+
+        .about-hero h1 {
+          margin: 9px 0 12px;
+          font-size: clamp(2.1rem, 5.5vw, 3rem);
+        }
+
+        .about-hero-copy .about-lead,
+        .about-positioning {
+          font-size: 0.82rem;
+          line-height: 1.55;
+        }
+
+        .about-hero-copy > p:not(.section-kicker) {
+          margin-bottom: 7px;
+        }
+
+        .about-english {
+          display: none;
+        }
+
+        .primary-link {
+          min-height: 44px;
+          margin-top: 7px;
+        }
+
+        .about-portrait img {
+          max-height: 270px;
+        }
+
+        .landscape-series-grid,
+        .portrait-series-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .lightbox-panel {
+          max-height: 100dvh;
+        }
+
+        .close-button {
+          min-width: 56px;
+          min-height: 44px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #home-view:not([hidden]),
+        .series-detail:not([hidden]),
+        .lightbox:not([hidden]) .lightbox-panel {
+          animation: none;
+        }
+
+        .series-enter > span:last-child,
+        .series-card-cover img {
+          transform: none !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -4311,6 +4654,7 @@
         <a id="nav-home" href="#home">首页</a>
         <a id="nav-works" href="#works">作品</a>
         <a id="nav-series" href="#series-groups">栏目</a>
+        <a id="nav-notes" href="#notes">札记</a>
         <a id="nav-about" href="#about">关于</a>
       </nav>
     </header>
@@ -4324,12 +4668,23 @@
             <p class="about-lead">
               欢迎来到我的个人摄影网站。在这里，我记录街头、故乡、建筑、风光与日常中的瞬间，也用影像整理自己观察世界的方式。
             </p>
+            <p class="about-positioning">
+              我常住广州，也持续关注城市里的劳动者、熟悉的家乡，以及人在具体空间中短暂停留的样子。
+            </p>
             <p>希望这些照片，能让你看到我所看见的片刻。</p>
             <p class="about-english">A personal archive of what I notice, remember, and want to keep.</p>
             <a class="primary-link" href="#works">浏览作品 <span aria-hidden="true">↓</span></a>
           </div>
           <figure class="about-portrait">
-            <img src="photos/about/me.jpg" alt="LilD 手持相机站在户外，身旁有一架无人机" fetchpriority="high" />
+            <img
+              src="photos/about/me.jpg"
+              alt="LilD 手持相机站在户外，身旁有一架无人机"
+              width="1280"
+              height="1280"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
           </figure>
         </section>
 
@@ -4348,22 +4703,15 @@
           <noscript>请在浏览器中启用 JavaScript，以查看摄影栏目和作品弹窗。</noscript>
         </section>
 
-        <section class="notes-section" id="notes" aria-labelledby="notes-title">
+        <section class="notes-section is-compact" id="notes" aria-labelledby="notes-title">
           <div class="notes-index" aria-hidden="true">
-            <span>02</span>
+            <span>NOTE</span>
             <span>FIELD NOTE</span>
           </div>
           <div class="notes-copy">
             <p class="section-kicker">FIELD NOTE / 拍摄札记</p>
-            <h2 id="notes-title">在行走中整理照片</h2>
-            <div class="notes-columns">
-              <p>
-                我会拍街头，也会拍旅途中遇到的风景、建筑和动物。题材并不固定，更多时候是先被一个动作、一段光线或人与环境之间的距离吸引，再按下快门。
-              </p>
-              <p>
-                这个网站按照栏目慢慢整理照片。文字只说明当时看见了什么、为什么留下这一帧，不替画面里的人发言，也不急着给每张照片一个很重的结论。
-              </p>
-            </div>
+            <h2 id="notes-title">拍摄札记，慢慢补充</h2>
+            <p class="notes-placeholder">这里将记录一些拍摄现场、构图选择和后来想起的事情。</p>
           </div>
         </section>
 
@@ -4407,7 +4755,7 @@
           </div>
           <figure class="series-detail-image">
             <button class="series-cover-button" id="series-cover-button" type="button">
-              <img id="series-cover" src="photos/tuoche-rensheng/000_5925.jpg" alt="" />
+              <img id="series-cover" alt="" loading="eager" decoding="async" />
               <span class="view-label">查看封面作品解读 ⟶</span>
             </button>
           </figure>
@@ -4455,7 +4803,7 @@
           关闭 ×
         </button>
         <div class="lightbox-image">
-          <img id="lightbox-img" src="photos/tuoche-rensheng/000_5918.jpg" alt="" />
+          <img id="lightbox-img" alt="" decoding="async" />
         </div>
         <div class="lightbox-copy">
           <p class="section-kicker" id="lightbox-kicker">IMAGE 01 / PHOTOGRAPH</p>
@@ -6156,7 +6504,7 @@
       });
       seriesList.splice(0, seriesList.length, ...orderedSeries);
 
-      const defaultTitle = "街上见 | LilD Photos";
+      const defaultTitle = "LilD Photos｜街上见";
       const homeView = document.getElementById("home-view");
       const seriesView = document.getElementById("series-view");
       const landscapeSeriesGrid = document.getElementById("landscape-series-grid");
@@ -6225,7 +6573,24 @@
         return series[key] || series.coverPosition || coverWork?.position || "50% 50%";
       }
 
-      function createSeriesCard(series, detectedOrientation = getCoverOrientation(series)) {
+      function applyImageDimensions(image, shape = "landscape") {
+        const dimensions = {
+          portrait: [1600, 2400],
+          square: [1600, 1600],
+          landscape: [2400, 1600],
+          wide: [2400, 1600],
+          full: [2400, 1600]
+        };
+        const [width, height] = dimensions[shape] || dimensions.landscape;
+        image.width = width;
+        image.height = height;
+      }
+
+      function createSeriesCard(
+        series,
+        detectedOrientation = getCoverOrientation(series),
+        visualIndex = 0
+      ) {
         const card = document.createElement("a");
         const coverWork = getCoverWork(series);
         const coverOrientation = detectedOrientation;
@@ -6241,10 +6606,19 @@
         cover.className = "series-card-cover";
         if (coverWork) {
           const image = document.createElement("img");
-          image.src = coverWork.src;
+          image.src = `photos/thumbnails/${series.id}.jpg`;
+          image.addEventListener(
+            "error",
+            () => {
+              image.src = coverWork.src;
+            },
+            { once: true }
+          );
           image.alt = coverWork.alt;
-          image.loading = "lazy";
+          image.loading = visualIndex < 3 ? "eager" : "lazy";
           image.decoding = "async";
+          if (visualIndex < 3) image.fetchPriority = "high";
+          applyImageDimensions(image, coverOrientation);
           image.style.objectPosition = getCoverPosition(series, "home", coverWork);
           cover.append(image);
         } else {
@@ -6281,36 +6655,21 @@
         return card;
       }
 
-      function detectCoverOrientation(series) {
-        const coverWork = getCoverWork(series);
-        if (!coverWork) return Promise.resolve(getCoverOrientation(series));
-        return new Promise((resolve) => {
-          const probe = new Image();
-          probe.onload = () => {
-            const ratio = probe.naturalWidth / probe.naturalHeight;
-            resolve(ratio > 1.08 ? "landscape" : ratio < 0.92 ? "portrait" : "square");
-          };
-          probe.onerror = () => resolve(getCoverOrientation(series, coverWork));
-          probe.src = coverWork.src;
-        });
-      }
-
-      async function renderSeriesIndex() {
-        const detectedSeries = await Promise.all(
-          seriesList.map(async (series) => ({
-            series,
-            orientation: await detectCoverOrientation(series)
-          }))
-        );
+      function renderSeriesIndex() {
+        const detectedSeries = seriesList.map((series) => ({
+          series,
+          orientation: getCoverOrientation(series)
+        }));
         const landscapeSeries = detectedSeries.filter((item) => item.orientation === "landscape");
         const portraitSeries = detectedSeries.filter((item) => item.orientation !== "landscape");
         const landscapeCards = landscapeSeries.map((item, index) => {
-          const card = createSeriesCard(item.series, item.orientation);
+          const card = createSeriesCard(item.series, item.orientation, index);
           card.querySelector(".series-card-index").textContent = String(index + 1).padStart(2, "0");
           return card;
         });
         const portraitCards = portraitSeries.map((item, index) => {
-          const card = createSeriesCard(item.series, item.orientation);
+          const visualIndex = landscapeSeries.length + index;
+          const card = createSeriesCard(item.series, item.orientation, visualIndex);
           card.querySelector(".series-card-index").textContent = String(landscapeSeries.length + index + 1).padStart(2, "0");
           return card;
         });
@@ -6339,6 +6698,7 @@
         image.alt = work.alt;
         image.loading = "lazy";
         image.decoding = "async";
+        applyImageDimensions(image, shape);
         image.style.objectPosition = work.position || "50% 50%";
         const applyNaturalShape = () => {
           if (!image.naturalWidth || !image.naturalHeight) return;
@@ -6399,6 +6759,7 @@
           const coverOrientation = getCoverOrientation(series, coverWork);
           cover.src = coverWork.src;
           cover.alt = coverWork.alt;
+          applyImageDimensions(cover, coverOrientation);
           cover.style.objectPosition = getCoverPosition(series, "detail", coverWork);
           seriesCoverFigure.classList.remove("is-landscape", "is-portrait", "is-square");
           seriesCoverFigure.classList.add(`is-${coverOrientation}`);
@@ -6450,12 +6811,13 @@
         seriesView.hidden = true;
         homeView.hidden = false;
         document.title = defaultTitle;
-        const activeNavigation = {
-          home: "nav-home",
-          works: "nav-works",
-          "series-groups": "nav-series",
-          about: "nav-about"
-        };
+          const activeNavigation = {
+            home: "nav-home",
+            works: "nav-works",
+            "series-groups": "nav-series",
+            notes: "nav-notes",
+            about: "nav-about"
+          };
         setActiveNavigation(activeNavigation[targetId || "home"] || "");
 
         requestAnimationFrame(() => {
@@ -6502,6 +6864,7 @@
         const work = series.works[activeWorkIndex];
         lightboxImage.src = work.src;
         lightboxImage.alt = work.alt;
+        applyImageDimensions(lightboxImage, work.shape);
         lightboxKicker.textContent = `IMAGE ${work.id} / PHOTOGRAPH`;
         lightboxTitle.textContent = work.title;
         lightboxSeries.textContent = `所属栏目：${series.title}`;
@@ -6509,6 +6872,12 @@
         lightboxSummary.textContent = work.summary;
         lightboxNote.textContent = work.note;
         lightboxPosition.textContent = `${String(activeWorkIndex + 1).padStart(2, "0")} / ${String(series.works.length).padStart(2, "0")}`;
+        const nextWork = series.works[(activeWorkIndex + 1) % series.works.length];
+        if (nextWork && nextWork.id !== work.id) {
+          const nextImage = new Image();
+          nextImage.decoding = "async";
+          nextImage.src = nextWork.src;
+        }
       }
 
       function openLightbox(series, work, trigger) {

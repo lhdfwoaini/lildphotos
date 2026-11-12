@@ -4633,6 +4633,14 @@
           transform: none !important;
         }
       }
+
+      /* 2026-11-12: let landscape caption text reach the photo's right edge. */
+      @media (min-width: 761px) {
+        .work-card:not(.portrait):not(.is-natural-portrait):not(.is-natural-square) .work-caption-details,
+        .work-card:not(.portrait):not(.is-natural-portrait):not(.is-natural-square) .work-caption-details p {
+          max-width: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -6606,6 +6614,18 @@
     "position": "50% 50%"
   }
 ]);
+
+
+      /* 2026-11-12 作者确认的栏目介绍、拍摄地点与作品说明。 */
+      Object.assign(seriesById["shenzhen"], {"description": "深圳离广州比较近，也有很多有意思的景点。有空的时候，我会去逛一逛、拍一拍照。"});
+      Object.assign(seriesById["aerial"], {"note": "习惯了在地面拍摄，把无人机往上飞，就能获得一个全新的视角。熟悉的景物会呈现出不一样的样子，带来不同的视觉体验。我很喜欢这种视角带来的新鲜感。"});
+      Object.assign(seriesById["documentary"], {"note": "我很喜欢拍人文摄影，这是我与社会接触、产生关联的重要方式，也记录着我如何看待身边的生活。我想不断走到街上，观察劳动者和人们日常生活的样貌，通过拍摄去了解自己身处的社会。"});
+      Object.assign(seriesById["abstract"], {"note": "除了日常题材，我也喜欢把看似不相关的元素放进同一个画面，让它们在构图里自然地联系起来。这些照片更偏向抽象和观念的表达。比起说明一个明确的主题，我更想借这些组合表达一些不确定的感受。照片未必有一个可以说清的含义，也可以只是带着一点抽象的感觉。"});
+      updateWork("aerial", "02", {"title": "广州上空", "scene": "广州 · 区庄立交", "note": "区庄立交从高处看像一组密集线条，主路、匝道和车辆在楼群间交叉。我选择竖幅，是想让路网从近处一直延伸到远处；车很小，但它们沿道路移动，让复杂结构仍保持真实的通行感。"});
+      updateWork("aerial", "04", {"scene": "英德 · 农田上空", "alt": "俯视英德的绿色农田，一人正在撒农药，一条土路从田地间斜穿而过", "summary": "英德的农田里，一人正在撒农药。人物像一个小点，与斜穿绿色田地的土路形成点与线的关系。", "note": "这张照片拍于英德的一片农田，画面中的人正在撒农药。我从上方向下拍，把人物看作一个点，把田间的土路看作一条线，想留下点与线交会的感觉。"});
+      updateWork("documentary", "03", {"scene": "华南理工大学国际校区"});
+      updateWork("documentary", "04", {"scene": "华南理工大学国际校区"});
+      updateWork("documentary", "06", {"scene": "广州 · 广交会展馆内"});
 
       const preferredSeriesOrder = [
         "tuoche-rensheng",

@@ -5,38 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="LilD 的个人摄影作品集，记录广州街头、家乡、建筑、风光与旅途中的日常观察。"
+      content="在路上 · LilD 的个人摄影档案，记录街头、故乡、建筑与旅途。摄影之路仍在继续，下一组照片永远在路上。"
     />
     <meta name="theme-color" content="#10100f" />
     <meta name="color-scheme" content="dark" />
     <link rel="canonical" href="https://lhdfwoaini.github.io/lildphotos/" />
-    <meta property="og:title" content="LilD Photos｜街上见" />
+    <meta property="og:title" content="LilD Photos｜在路上" />
     <meta
       property="og:description"
-      content="LilD 的个人摄影作品集，记录广州街头、家乡、建筑、风光与旅途中的日常观察。"
+      content="在路上 · LilD 的个人摄影档案，记录街头、故乡、建筑与旅途。摄影之路仍在继续，下一组照片永远在路上。"
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lhdfwoaini.github.io/lildphotos/" />
     <meta
       property="og:image"
-      content="https://lhdfwoaini.github.io/lildphotos/share-cover.jpg"
+      content="https://lhdfwoaini.github.io/lildphotos/share-cover.jpg?v=20261112-on-the-way"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="LilD Photos｜街上见个人摄影作品集" />
+    <meta property="og:image:alt" content="LilD Photos｜在路上个人摄影作品集" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LilD Photos｜街上见" />
+    <meta name="twitter:title" content="LilD Photos｜在路上" />
     <meta
       name="twitter:description"
-      content="LilD 的个人摄影作品集，记录广州街头、家乡、建筑、风光与旅途中的日常观察。"
+      content="在路上 · LilD 的个人摄影档案，记录街头、故乡、建筑与旅途。摄影之路仍在继续，下一组照片永远在路上。"
     />
     <meta
       name="twitter:image"
-      content="https://lhdfwoaini.github.io/lildphotos/share-cover.jpg"
+      content="https://lhdfwoaini.github.io/lildphotos/share-cover.jpg?v=20261112-on-the-way"
     />
-    <meta name="twitter:image:alt" content="LilD Photos｜街上见个人摄影作品集" />
+    <meta name="twitter:image:alt" content="LilD Photos｜在路上个人摄影作品集" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <title>LilD Photos｜街上见</title>
+    <title>LilD Photos｜在路上</title>
     <style>
       :root {
         --paper: #151310;
@@ -4641,12 +4641,19 @@
           max-width: none;
         }
       }
+
+      /* Longer author statements retain the existing About section and typography. */
+      .about-copy { grid-column: 2 / -1; min-width: 0; max-width: 68ch; }
+      .about-copy p { margin: 0 0 1.15em; line-height: 1.9; }
+      .about-copy .about-copyright { margin-bottom: 0; color: var(--text-muted); font-size: 0.82rem; }
+      #series-note, .lightbox-note { white-space: pre-line; }
+      @media (max-width: 1000px) { .about-copy { grid-column: 1 / -1; } }
     </style>
   </head>
   <body>
     <header class="site-header">
       <a class="wordmark" href="#home" aria-label="回到首页">
-        <span class="desktop-brand">街上见 <i aria-hidden="true">|</i> LilD Photos</span><span class="mobile-brand">LilD Photos</span>
+        <span class="desktop-brand">在路上 <i aria-hidden="true">|</i> LilD Photos</span><span class="mobile-brand">在路上 | LilD Photos</span>
       </a>
       <button
         class="menu-button"
@@ -4662,7 +4669,6 @@
         <a id="nav-home" href="#home">首页</a>
         <a id="nav-works" href="#works">作品</a>
         <a id="nav-series" href="#series-groups">栏目</a>
-        <a id="nav-notes" href="#notes">札记</a>
         <a id="nav-about" href="#about">关于</a>
       </nav>
     </header>
@@ -4679,7 +4685,7 @@
             <p class="about-positioning">
               我常住广州，也持续关注城市里的劳动者、熟悉的家乡，以及人在具体空间中短暂停留的样子。
             </p>
-            <p>希望这些照片，能让你看到我所看见的片刻。</p>
+            <p>摄影之路还远远没有结束，下一组照片，永远在路上。</p>
             <p class="about-english">A personal archive of what I notice, remember, and want to keep.</p>
             <a class="primary-link" href="#works">浏览作品 <span aria-hidden="true">↓</span></a>
           </div>
@@ -4711,32 +4717,19 @@
           <noscript>请在浏览器中启用 JavaScript，以查看摄影栏目和作品弹窗。</noscript>
         </section>
 
-        <section class="notes-section is-compact" id="notes" aria-labelledby="notes-title">
-          <div class="notes-index" aria-hidden="true">
-            <span>NOTE</span>
-            <span>FIELD NOTE</span>
-          </div>
-          <div class="notes-copy">
-            <p class="section-kicker">FIELD NOTE / 拍摄札记</p>
-            <h2 id="notes-title">拍摄札记，慢慢补充</h2>
-            <p class="notes-placeholder">这里将记录一些拍摄现场、构图选择和后来想起的事情。</p>
-          </div>
-        </section>
-
         <section class="about-section" id="about" aria-labelledby="about-title">
           <div>
             <p class="section-kicker">ABOUT / 关于</p>
-            <h2 id="about-title">一份持续生长的个人摄影档案</h2>
+            <h2 id="about-title">一份持续生长的<br />个人摄影档案</h2>
           </div>
-          <p>
-            这里收录不同阶段的摄影栏目、组图、拍摄札记和单幅解读。新的照片会继续加入，也会保留尚未完成的系列，让整理本身成为拍摄的一部分。
-          </p>
-          <p>
-            本站照片版权归作者所有，未经许可请勿转载、复制或用于商业用途。
-          </p>
+          <div class="about-copy">
+            <p>我把这个网站叫作“在路上”，因为自己的摄影之路还远远没有结束。这里收录不同阶段的栏目、组图与单幅解读，也保留尚未完成的系列。新的照片会继续加入，下一组照片，永远在路上。</p>
+            <p>好摄影从来没有唯一的标尺。有人痴迷于光影与构图的精巧，有人动容于故事里的人文温度，也有人被瞬间定格的视觉张力震撼，或偏爱作品背后的深刻思考。不同的人有不同的感受，摄影也没有一个标准答案。我希望这份档案能容纳这些不同的观看，也记录自己不断变化的理解。</p>
+            <p class="about-copyright">本站照片版权归作者所有，未经许可请勿转载、复制或用于商业用途。</p>
+          </div>
           <div class="next-series">
             <span>NEXT SERIES</span>
-            <strong>下一组照片，仍在路上</strong>
+            <strong>下一组照片，永远在路上</strong>
           </div>
         </section>
       </div>
@@ -4793,7 +4786,7 @@
     </main>
 
     <footer>
-      <a class="wordmark small" href="#home">街上见 | LilD Photos</a>
+      <a class="wordmark small" href="#home">在路上 | LilD Photos</a>
       <p>个人摄影作品集 · 持续更新</p>
       <p>© 2026 LilD Photos · 摄影作品版权归作者所有</p>
     </footer>
@@ -6627,6 +6620,35 @@
       updateWork("documentary", "04", {"scene": "华南理工大学国际校区"});
       updateWork("documentary", "06", {"scene": "广州 · 广交会展馆内"});
 
+
+      /* 2026-11-12 作者补充：在路上、栏目背景及单幅拍摄记录。 */
+      Object.assign(seriesById["tuoche-rensheng"], {"description": "从初中起在广州天河读书、生活，我熟悉这里的繁荣。搬到广州东站旁边后，沙河街头推车人的日夜奔波，让我看见了另一种同样真实的广州。", "note": "我在广州生活了很多年，从初中起就在天河区上学，也见惯了这里的繁荣与发展。后来搬到广州东站旁边，才开始注意到沙河街头那些每天推着手推车、日夜奔波的人。繁华的城市里，同样留下了普通劳动者为生活忙碌的痕迹。\n\n劳动人民也是广州的一部分。我想记录这份不常被外人看见的日常，让他们运货、合作、交流和休息时真实而有温度的一面被看见。我希望带着尊重靠近他们，不用镜头猎奇，也不把困境当作看点。这组关于推车与推车人的照片，就从这样的想法开始。"});
+      Object.assign(seriesById["xiangjian-hechu"], {"description": "春节回到英德龙头山，我用胶片记录饭前饭后走过的村庄。这是我尝试拍摄自己心中“乡土中国”的一组照片，也记录着我对家乡不断变化的理解。", "note": "我一直希望拍出一组自己满意的“乡土中国”。比起多么震撼的大片，这更接近我作为一个人文纪实摄影师的愿望。随着年龄和阅历增长，我对它的理解经历了很多变化：童年的记忆、如今更深入的认识，以及乡村本身的变迁，让我不断重新看待家乡。这组照片，是一次初步尝试。\n\n我三四岁时离开家乡去英德生活，每逢过年仍会回来探望奶奶，和亲戚一起吃团圆饭。饭前饭后，我就带着胶片机出去走走。村里的年轻人大多已经外出，逢年过节才回来；照片里看似热闹的春节，一过完，村子又会归于寂静。我想留下的，是自己眼中家乡真实的样子。"});
+      Object.assign(seriesById["architecture"], {"description": "空间结构、线条和光影总能吸引我。无论建筑的局部还是整体，我都喜欢寻找其中的秩序，以及人和天空进入这些结构时的变化。", "note": "我是 INTJ，虽然没有学过建筑，却一直对空间结构、线条和光影很着迷。建筑的局部和整体都能带来拍摄灵感：一段楼梯、一片立面，或者抬头时被楼宇围出的天空。\n\n这里有不少照片拍于华南理工大学国际校区，我很喜欢那里新颖的设计和特别的立面。另一些照片是在楼宇内部向上拍的：规整的线条围住天空，飞机从中经过。我喜欢把这些结构与短暂出现的细节一起留在画面里。"});
+      Object.assign(seriesById["landscape"], {"description": "我的摄影爱好从风光开始。寻找机位、安排构图、学习参数，再到后期处理，这些步骤让我一点点熟悉摄影，也让我一直喜欢等待日落与晚霞。", "note": "刚入门摄影时，我拍得最多的是风光。拍摄前要了解机位，到现场后要考虑构图、参数和光线，拍完还要琢磨怎样做后期。每个环节都需要准备和练习，这对我学习摄影帮助很大。\n\n街头拍摄常常要回应眼前突然发生的瞬间，风光拍摄则让我学会提前规划和耐心等待。这里选了几张日落、晚霞的画面，因为我始终觉得，傍晚天空的颜色非常迷人。"});
+      Object.assign(seriesById["shandong"], {"description": "2025 年 8 月，我跟女朋友回山东探亲，也去了青岛和烟台。海边、建筑和晚霞留在照片里，其中烟台带给我的舒适与松弛，至今印象很深。", "note": "女朋友是山东人。2025 年 8 月，我跟她回家，也趁这次机会去了青岛和烟台。旅途中我最喜欢烟台：它让我想到广东的珠海，但对我来说，那片海带来的舒适感还要更强一些。珠海已经很安逸，烟台却让我更愿意慢下来。\n\n这里很多照片都拍于烟台：时光塔里的明暗、塔外女朋友的身影、长曝光下的海面，还有那天让我一直记着的满天红霞。它们是这趟旅程里，我想留下的具体片刻。", "location": "山东 · 青岛与烟台"});
+      Object.assign(seriesById["shenzhen"], {"description": "深圳离广州不远，却总让我这个老广感到节奏很快。这里新颖的建筑、空间与光线，又不断吸引我过去走走、拍拍。", "note": "每次去深圳，我都能感受到它飞快的发展和生活节奏，让我这个传统老广有一点不太适应。但这里前沿的设计和很有想法的建筑，又总能吸引我拿起相机。\n\n最近去深圳湾文化馆，里面大块的暖色形状、特别的窗洞和穿进来的光，让我很感兴趣。我拍下人在这些建筑空间里的位置，也继续寻找结构、光线和人物之间的关系。"});
+      Object.assign(seriesById["zhuhai"], {"description": "一个本科舍友在珠海生活，我们有时会过去相聚。聚会和闲逛之间，海边的建筑、台阶与日月贝，也成了我留下这座城市的方式。", "note": "我的一个本科舍友住在珠海，所以我们有时会去那里聚一聚，也顺便走走、拍照。我们拍过阿那亚那些很特别的建筑，也拍过日月贝。\n\n我很喜欢日月贝的形状，换一个机位、走到海边，或者把无人机升起来，又会看到不一样的画面。这个栏目里，和朋友相聚的经历与这些建筑、海面的印象留在了一起。"});
+      Object.assign(seriesById["hong-kong"], {"description": "和一位本科舍友同行，我拍下香港的老街、建筑与穿行的人流。这座城市浓厚的旧日痕迹，以及中环忙碌的街头，都给我留下了很深的印象。", "note": "这组照片来自我和一位本科舍友的香港之行。香港给我的第一感觉是“旧”：这座很早就发展起来的城市，在街景和建筑里保留了很多年月留下的痕迹，也有很鲜明的港味。\n\n我借鉴过何藩作品里的观看方式，也尝试用自己的快门记录眼前的城市。最满意的照片之一是《Busy》：我在中环用慢门留下人们穿过街道的身影，让路面清晰的提示字样与流动的人群，一起呈现忙碌的感觉。"});
+      updateWork("tuoche-rensheng", "01", {"summary": "盖着布的推车安静地沿墙停放。这一次，画面里只有人们谋生的工具，没有使用它们的人。", "note": "平时拍推车，我的画面里总离不开人。这一次，我特意只拍车，把人们谋生、工作的工具从人物身边单独记录下来。它们被布盖着，安安静静地停在墙边的角落。我想从这份安静开始，再走近使用它们的人，所以把它放在组图的第一张。"});
+      updateWork("tuoche-rensheng", "02", {"summary": "一个人坐着向左看，另一个人站着朝右望，推车与两个人一起停在路口，形成彼此呼应的关系。", "note": "两个人朝着不同方向，一个坐着，一个站着，推车把他们连接在同一个画面里。我从这个站位中感受到一种合作、彼此依靠的意味。\n\n路面通常留给机动车通行，推车停在其中，让我格外留意。在广州沙河，还能看到一些手推车被加装电动装置，像没有外壳的电动车，载货方便、使用灵活，成为劳动者日常运送货物的一种工具。这也是我想记录的沙河街头生活。"});
+      updateWork("tuoche-rensheng", "03", {"summary": "落日余晖照进桥下，几个人坐在推车上聊天，日常停靠的地方也成了交流与休息的位置。", "note": "落日余晖里，他们三五成群地坐在推车上交流。推车在这时成了可以一起坐下、说几句话的地方。我觉得这一幕很温暖，就把光线、人物和桥下的空间一起留下来。"});
+      updateWork("tuoche-rensheng", "04", {"summary": "早晨的树荫下，推车从近处排向远处。等开工的人在车上坐下或躺着，暂时歇一歇。", "note": "这是早晨等开工时的场景。从近处到远处，都能看见推车的身影，有人已经躺在车上休息。我把前后这些车和人一起留进画面，记录开工之前这段暂时停下来的时间。"});
+      updateWork("tuoche-rensheng", "05", {"summary": "桥下休息的人与推车分布在前景、中景和远处，三处位置相互呼应，形成一个三角形构图。", "note": "这一幕和树下等工的场景相近，但我特意选择了这个角度。前景、中景和背景里的三处人物与推车，形成远、中、近的三角形呼应。我想把他们休息的状态和这层空间关系一起拍下来。"});
+      updateWork("tuoche-rensheng", "06", {"summary": "一个人拖着推车向前，旁边另一辆相仿的车留在画面里，两辆车的形状与位置相互呼应。", "note": "为了拍到他带着推车前行的样子，我跟着走了一路。恰好旁边还有另一辆相仿的推车，我特意把两辆车都纳入构图，让它们的形状和前后位置形成呼应，也留下这个人继续上路的背影。"});
+      updateWork("architecture", "01", {"scene": "华南理工大学国际校区", "note": "我很喜欢国际校区的建筑。接近日落时，长立面只接住少量亮光，前方撑伞的人很小，却让整栋楼的尺度一下清楚。我按下快门，是因为建筑横向延伸的重量和人物经过的轻巧刚好同时出现。"});
+      updateWork("architecture", "02", {"scene": "华南理工大学国际校区"});
+      updateWork("architecture", "03", {"scene": "华南理工大学国际校区"});
+      updateWork("architecture", "04", {"scene": "华南理工大学国际校区"});
+      updateWork("shandong", "02", {"scene": "烟台 · 时光塔内部", "note": "这张拍于烟台时光塔内部。我把建筑内部压成黑色，只让小门、地面光带和外面场景留下细节。人物从门口经过时，身体和影子同时进入亮区，我抓住了这个时间点。真正吸引我的是建筑局部如何被光线打开。"});
+      updateWork("shandong", "03", {"scene": "烟台 · 时光塔内部", "note": "这张同样拍于烟台时光塔内部。我等到提桶的清洁工从暗处走出来才按下快门。弧形出口已经把地面照亮，人物正好进入明暗交界，轮廓边缘出现一圈光。我想留下的是这个经过的时机，以及人物和光的位置。"});
+      updateWork("shandong", "04", {"scene": "烟台 · 时光塔外", "summary": "女朋友走过时光塔外的开阔场地，大片天空和地面围绕着小小的身影展开。", "note": "画面里是我的女朋友，这张拍于烟台时光塔外。我把大部分画面留给天空和地面，让她只占其中很小的一部分。迈起的脚和张开的手臂，在空旷背景前变得清楚；我很喜欢这种小人物与大背景之间的比例。"});
+      updateWork("shandong", "05", {"scene": "烟台 · 海边", "note": "我在烟台海边，用长曝光把海面细小的波动压平，再转成黑白，让几根旧桩的高低、间隔和位置留在平滑的水面上。这种简洁、安静的感觉，让我想到杉本博司的《海景》系列。我喜欢的也是画面被简化之后，海面与线条之间的关系。"});
+      updateWork("shandong", "07", {"scene": "烟台 · 海边观景平台", "summary": "烟台的晚霞铺满海面上方，长曝光让水面与平台上经过的人影变得柔和。", "note": "我至今记得那天烟台满天的红霞，现场的震撼感一直留在记忆里。在我平日生活的广东，很少遇到这样的天空。我保留了晚霞的颜色，用长曝光让海面平缓下来，也让平台上经过的人留下流动的痕迹。"});
+      updateWork("hong-kong", "01", {"note": "这张照片借鉴了何藩曾在这里拍摄的楼梯作品。我对准楼梯中轴，等待左右两侧分别有人上行和下行。人物方向相反，扶手与台阶形成近似对称；我想用这一次遇到的人和经过的时机，回应自己喜欢的观看方式。"});
+      updateWork("hong-kong", "04", {"title": "Busy", "scene": "香港 · 中环街头", "summary": "中环街头，上下班的人流在慢门里留下移动的痕迹，路面“望左”“望右”的提示仍清楚地留在原处。", "note": "这是这趟香港之行里，我比较满意的一张。我在中环用较慢的快门，拍下人们上下班穿过街道的景象。路面的“望左”“望右”提醒行人留意车辆，人群却在画面里变成流动的身影。我想呈现这种不断穿行、忙碌不停的感觉，所以把它叫作《Busy》。"});
+      updateWork("zhuhai", "01", {"note": "和本科舍友在珠海相聚时，我们也去拍了这处与阿那亚有关的建筑。白色小屋落在草坡最高处，我用低机位让坡面先占据前景，再把建筑放到天空边缘，留下它清楚、特别的形状。"});
+
       const preferredSeriesOrder = [
         "tuoche-rensheng",
         "xiangjian-hechu",
@@ -6650,7 +6672,7 @@
       });
       seriesList.splice(0, seriesList.length, ...orderedSeries);
 
-      const defaultTitle = "LilD Photos｜街上见";
+      const defaultTitle = "LilD Photos｜在路上";
       const homeView = document.getElementById("home-view");
       const seriesView = document.getElementById("series-view");
       const landscapeSeriesGrid = document.getElementById("landscape-series-grid");
@@ -6961,7 +6983,6 @@
             home: "nav-home",
             works: "nav-works",
             "series-groups": "nav-series",
-            notes: "nav-notes",
             about: "nav-about"
           };
         setActiveNavigation(activeNavigation[targetId || "home"] || "");
@@ -6983,7 +7004,7 @@
         renderSeriesDetail(series);
         homeView.hidden = true;
         seriesView.hidden = false;
-        document.title = `${series.title}｜LilD Photos`;
+        document.title = `${series.title}｜在路上 · LilD Photos`;
         setActiveNavigation("nav-series");
         window.scrollTo(0, 0);
       }
@@ -7001,7 +7022,7 @@
           }
         }
 
-        const homeTargets = ["home", "works", "series-groups", "notes", "about"];
+        const homeTargets = ["home", "works", "series-groups", "about"];
         showHome(homeTargets.includes(hash) ? hash : "home");
       }
 
